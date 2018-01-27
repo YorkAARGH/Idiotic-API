@@ -18,5 +18,9 @@
   "homepage": "https://github.com/YorkAARGH/the-idiots-api-wrapper#readme",
   "dependencies": {
     "snekfetch": "^3.6.1"
+  },
+  "devDependencies": {
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0"
   }
 }

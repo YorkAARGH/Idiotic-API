@@ -1,4 +1,4 @@
 module.exports = {
-    client: require('./lib/Client'),
+    Client: require('./lib/Client'),
     version: require('../package.json').version
 };
