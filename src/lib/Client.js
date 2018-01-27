@@ -5,9 +5,13 @@ class Client {
   constructor(token) {
     if (!token) throw new Error("Token must be specified");
     if (typeof token !== "string") throw new SyntaxError("Token must be a string");
+
     this.token = token;
+    
     this.baseUrl = "http://api.anidiots.guide/api/";
   }
+
+  // Commands
 
   // Text based
   blame(text) {
@@ -76,6 +80,18 @@ class Client {
   crush(imageOne, imageTwo) {
     return this._get("crush", { imageOne, imageTwo });    
   }  
+
+  // Greetings
+  welcome(version, bot, avatar, usertag, guild) {
+    const user = encodeURIComponent(usertag);
+    return this._get(`${version}_welcome`, { bot, avatar, user, guild });    
+  }
+
+  // Farewells
+  goodbye(version, bot, avatar, usertag) {
+    const user = encodeURIComponent(usertag);
+    return this._get(`${version}_goodbye`, { bot, avatar, user });    
+  }
 
   _get(endpoint, query = {}) {
     return new Promise((resolve, reject) => {
