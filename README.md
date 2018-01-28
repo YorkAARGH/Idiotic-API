@@ -54,6 +54,6 @@ await message.channel.send(new MessageAttachment(
 const { user } = member;
 
 await message.channel.send(new MessageAttachment(
-  await client.api.welcome("gearz", user.bot, user.tag,`${member.guild.name}#${member.guild.memberCount}`),
+  await client.api.welcome("gearz", user.bot, user.displayAvatarURL({ format: "png" }), user.tag,`${member.guild.name}#${member.guild.memberCount}`),
   "welcome"));
 ```
