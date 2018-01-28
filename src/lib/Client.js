@@ -29,20 +29,20 @@ class Client {
 
   /**
    * Blame endpoint
-   * @param {String} text text to except back
+   * @param {String} name text to except back
    * @returns {Promise<Buffer>}
    */
-  blame(text) {
-    return this._get("blame", { text });
+  blame(name) {
+    return this._get("blame", { name });
   }
 
   /**
    * Pls endpoint
-   * @param {String} text text to except back
+   * @param {String} mame text to except back
    * @returns {Promise<Buffer>}
    */
-  pls(text) {
-    return this._get("pls", { text });
+  pls(name) {
+    return this._get("pls", { name });
   }
 
   /**
@@ -58,96 +58,96 @@ class Client {
 
   /**
    * Achievement endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @param {String} text text to except back
    * @returns {Promise<Buffer>}
    */
-  achievement(image, text) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("achievement", { image, text });  
+  achievement(avatar, text) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("achievement", { avatar, text });  
   }  
 
   /**
    * TheSearch endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @param {String} text text to except back
    * @returns {Promise<Buffer>}
    */
-  theSearch(image, text) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("thesearch", { image, text });  
+  theSearch(avatar, text) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("thesearch", { avatar, text });  
   }  
 
   /* Single Image endpoints */
 
   /**
    * Beautiful endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  beautiful(image) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("beautiful", { image });  
+  beautiful(avatar) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("beautiful", { avatar });  
   }
 
   /**
    * Facepalm endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  facepalm(image) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("facepalm", { image });  
+  facepalm(avatar) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("facepalm", { avatar });
   }
 
   /**
    * Respect endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  respect(image) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("respect", { image });  
+  respect(avatar) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("respect", { avatar });
   }
 
   /**
    * Stepped endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  stepped(image) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("stepped", { image });  
+  stepped(avatar) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("stepped", { avatar });
   }
 
   /**
    * Tattoo endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  tattoo(image) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("tattoo", { image });  
+  tattoo(avatar) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("tattoo", { avatar });  
   }
 
   /**
    * Triggered endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  triggered(image) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("triggered", { image });  
+  triggered(avatar) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("triggered", { avatar });  
   }
 
   /**
    * VaultBoy endpoint
-   * @param {String} image Image you except to be used
+   * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  vaultBoy(image) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("vault", { image });  
+  vaultBoy(avatar) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("vault", { avatar });  
   }
 
   /**
@@ -155,47 +155,47 @@ class Client {
    * @param {String} image Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  wanted(image) {
-    image = image.replace(imageUrlRegex, ".png");
-    return this._get("wanted", { image });  
+  wanted(avatar) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("wanted", { avatar });  
   }
 
   /* Double Image endpoints */
 
   /**
    * BatSlap endpoint
-   * @param {String} imageOne Image you expect to be used
-   * @param {String} imageTwo Image you expect to be used
+   * @param {String} slapper Image you expect to be used
+   * @param {String} slapped Image you expect to be used
    * @returns {Promise<Buffer>}
    */
-  batSlap(imageOne, imageTwo) {
-    imageOne = imageOne.replace(imageUrlRegex, ".png");
-    imageTwo = imageTwo.replace(imageUrlRegex, ".png");
-    return this._get("batslap", { imageOne, imageTwo });  
+  batSlap(slapper, slapped) {
+    slapper = slapper.replace(imageUrlRegex, ".png");
+    slapped = slapped.replace(imageUrlRegex, ".png");
+    return this._get("batslap", { slapper, slapped });  
   }
 
   /**
    * FanSlap endpoint
-   * @param {String} imageOne Image you expect to be used
-   * @param {String} imageTwo Image you expect to be used
+   * @param {String} slapper Image you expect to be used
+   * @param {String} slapped Image you expect to be used
    * @returns {Promise<Buffer>}
    */
-  fanSlap(imageOne, imageTwo) {
-    imageOne = imageOne.replace(imageUrlRegex, ".png");
-    imageTwo = imageTwo.replace(imageUrlRegex, ".png");
-    return this._get("slap", { imageOne, imageTwo });  
+  fanSlap(slapper, slapped) {
+    slapper = slapper.replace(imageUrlRegex, ".png");
+    slapped = slapped.replace(imageUrlRegex, ".png");
+    return this._get("slap", { slapper, slapped });  
   }
 
   /**
    * Crush endpoint
-   * @param {String} imageOne Image you expect to be used
-   * @param {String} imageTwo Image you expect to be used
+   * @param {String} crusher Image you expect to be used
+   * @param {String} crush Image you expect to be used
    * @returns {Promise<Buffer>}
    */
-  crush(imageOne, imageTwo) {
-    imageOne = imageOne.replace(imageUrlRegex, ".png");
-    imageTwo = imageTwo.replace(imageUrlRegex, ".png");
-    return this._get("crush", { imageOne, imageTwo });    
+  crush(crusher, crush) {
+    crusher = crusher.replace(imageUrlRegex, ".png");
+    crush = crush.replace(imageUrlRegex, ".png");
+    return this._get("crush", { crusher, crush });    
   }  
 
   /* Greetings endpoints */
