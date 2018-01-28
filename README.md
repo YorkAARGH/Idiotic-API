@@ -2,7 +2,7 @@
 
 This is a canvas based API to be used primarily with Discord Bots, so all examples will be based using **Discord.js Version 12** methods.
 
-##
+## Installation
 
 You'll want to declare this somewhere central, so maybe attach it to the client.
 
