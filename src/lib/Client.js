@@ -9,8 +9,8 @@ class Client {
    * @param {String} token Idiot's Guide API token
    */
   constructor(token) {
-    if (!token) throw new Error("Token must be specified");
-    if (typeof token !== "string") throw new SyntaxError("Token must be a string");
+    if (!token) throw new Error("Unknown Token: Token Missing");
+    if (typeof token !== "string") throw new SyntaxError("Invalid Token: Token must be a String");
 
     /**
      * Idiot's Guide API token
