@@ -211,8 +211,6 @@ class Client {
    */
   welcome(version, bot, avatar, usertag, guild) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    usertag = encodeURIComponent(usertag);
-    guild = encodeURIComponent(guild);
     return this._get(`${version}_welcome`, { bot, avatar, usertag, guild });    
   }
 
@@ -228,7 +226,6 @@ class Client {
    */
   goodbye(version, bot, avatar, usertag) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    usertag = encodeURIComponent(usertag);
     return this._get(`${version}_goodbye`, { bot, avatar, usertag });    
   }
 

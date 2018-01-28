@@ -1,10 +1,11 @@
 {
   "name": "idiotic-api",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An api wrapper for the private idiots guide api",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint src",
+    "lint": "eslint --fix src"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,7 @@
   },
   "homepage": "https://github.com/YorkAARGH/idiotic-api#readme",
   "dependencies": {
-    "snekfetch": "^3.6.1"
+    "snekfetch": "^3.6.2"
   },
   "devDependencies": {
     "eslint": "^4.16.0"
