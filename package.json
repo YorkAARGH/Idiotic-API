@@ -11,7 +11,7 @@
     "url": "git+https://github.com/YorkAARGH/idiotic-api.git"
   },
   "author": "An Idiot's Guide",
-  "Contributors": "Jacz",
+  "contributors": ["Jacz"],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/YorkAARGH/idiotic-api/issues"
