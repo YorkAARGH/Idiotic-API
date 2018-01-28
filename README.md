@@ -8,7 +8,7 @@ You cannot deconstruct the package due to how it's coded, You need to require an
 
 ## Command Based Endpoints
 
-## Achievement
+### Achievement
 
 ```javascript
 const Idiot = require("idiotic-api");
@@ -19,7 +19,7 @@ await message.channel.send(new MessageAttachment(
 	"achievement.png"));
 ```
 
-## Bat Slap
+### Bat Slap
 
 ```javascript
 const Idiot = require("idiotic-api");
@@ -31,7 +31,7 @@ await message.channel.send(new MessageAttachment(
 	"batslap.png"));
 ```
 
-## Wanted
+### Wanted
 
 ```javascript
 const Idiot = require("idiotic-api");
@@ -42,7 +42,7 @@ await message.channel.send(new MessageAttachment(
 	"batslap.png"));
 ```
 
-## pls
+### pls
 
 ```javascript
 const Idiot = require("idiotic-api");
@@ -55,7 +55,7 @@ await message.channel.send(new MessageAttachment(
 
 ## Greeting/Farewell Based Endpoints
 
-## Gearz Welcome
+### Gearz Welcome
 
 ```javascript
 const Idiot = require("idiotic-api");
