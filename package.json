@@ -1,5 +1,5 @@
 {
-  "name": "idiots-api.js",
+  "name": "idiotic-api",
   "version": "0.0.1",
   "description": "An api wrapper for the private idiots guide api",
   "main": "src/index.js",
@@ -8,14 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YorkAARGH/the-idiots-api-wrapper.git"
+    "url": "git+https://github.com/YorkAARGH/idiotic-api.git"
   },
-  "author": "Jacz",
+  "author": "An Idiot's Guide",
+  "Contributors": "Jacz",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/YorkAARGH/the-idiots-api-wrapper/issues"
+    "url": "https://github.com/YorkAARGH/idiotic-api/issues"
   },
-  "homepage": "https://github.com/YorkAARGH/the-idiots-api-wrapper#readme",
+  "homepage": "https://github.com/YorkAARGH/idiotic-api#readme",
   "dependencies": {
     "snekfetch": "^3.6.1"
   },
