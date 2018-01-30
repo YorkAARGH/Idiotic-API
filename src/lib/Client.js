@@ -175,6 +175,18 @@ class Client {
   }
 
   /**
+   * SuperPunch endpoint
+   * @param {String} puncher Image you expect to be used
+   * @param {String} punched Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */
+  superPunch(puncher, punched) {
+    puncher = puncher.replace(imageUrlRegex, ".png");
+    punched = punched.replace(imageUrlRegex, ".png");
+    return this._get("batslap", { puncher, punched });  
+  }
+
+  /**
    * FanSlap endpoint
    * @param {String} slapper Image you expect to be used
    * @param {String} slapped Image you expect to be used
