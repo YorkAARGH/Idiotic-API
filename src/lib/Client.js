@@ -183,7 +183,7 @@ class Client {
   superPunch(puncher, punched) {
     puncher = puncher.replace(imageUrlRegex, ".png");
     punched = punched.replace(imageUrlRegex, ".png");
-    return this._get("batslap", { puncher, punched });  
+    return this._get("superpunch", { puncher, punched });  
   }
 
   /**

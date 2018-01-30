@@ -1,6 +1,6 @@
 {
   "name": "idiotic-api",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "An api wrapper for the private idiots guide api",
   "main": "src/index.js",
   "scripts": {
