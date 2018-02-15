@@ -174,7 +174,18 @@ class IdioticClient {
    */
   wanted(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("wanted", { avatar });  
+    return this._get("wanted", { avatar });
+  }
+
+  /**
+   * Missing endpoint
+   * @param {String} image Image you except to be used
+   * @returns {Promise<Buffer>}
+   */
+  missing(avatar) {
+    if (!this.dev) throw new Error("Missing endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("missing", { avatar });
   }
 
   /* Double Image endpoints */
