@@ -2,13 +2,21 @@ const snekfetch = require("snekfetch");
 const imageUrlRegex = /.webp$/g;
 
 /**
- * Base client for the Idiot's Guide API wrapper
+ * Client for Idiotic-api Wrapper
  */
-class Client {
+class IdioticClient {
   /**
-   * @param {String} token Idiot's Guide API token
+	 * @typedef {Object} IdioticClientOptions
+	 * @property {String} [url] Base URL for Idiotic API
+   * @property {Boolean} [dev=false]
+	 * @memberof IdioticClient
+	 */
+
+  /**
+   * @param {String} token Idiotic API token
+   * @param {IdioticClientOptions} [options] Client options
    */
-  constructor(token) {
+  constructor(token, options = {}) {
     if (!token) throw new Error("Unknown Token: Token Missing");
     if (typeof token !== "string") throw new SyntaxError("Invalid Token: Token must be a String");
 
@@ -17,12 +25,21 @@ class Client {
      * @type {String}
      */
     this.token = token;
-    
+    /**
+     * Client options
+     * @type {Object}
+     */
+    this.options = options;
+    /**
+     * Whether to use the dev endpoint
+     * @type {Boolean}
+     */
+    this.dev = options.dev || false;
     /**
      * Base URL for Idiot's Guide API
      * @type {String}
      */
-    this.baseUrl = "http://api.anidiots.guide/api/";
+    this.baseUrl = options.url || this.dev ? "https://dev.anidiots.guide/" : "https://api.anidiots.guide/api/";
   }
 
   /* Text based endpoints */
@@ -214,14 +231,14 @@ class Client {
 
   /**
    * 
-   * @param {String} version The type/version of greeting image you want to use
-   * @param {Boolean} bot A boolean saying if the user is a bot or not
+   * @param {String} [version="gearz"] The type/version of greeting image you want to use
+   * @param {Boolean} [bot=false] A boolean saying if the user is a bot or not
    * @param {String} avatar Avatar url
-   * @param {String} usertag User's tag
-   * @param {String} guild guild name and guild member count seperated by #
+   * @param {String} usertag User's tag, format: username#discrim
+   * @param {String} guild guild name and guild member count seperated by #, format: guildname#memberCount
    * @returns {Promise<Buffer>}
    */
-  welcome(version, bot, avatar, usertag, guild) {
+  welcome(version = "gearz", bot = false, avatar, usertag, guild) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(`${version}_welcome`, { bot, avatar, usertag, guild });    
   }
@@ -230,13 +247,13 @@ class Client {
 
   /**
    * 
-   * @param {String} version The type/version of farewell image you want to use
-   * @param {Boolean} bot A boolean saying if the user is a bot or not
+   * @param {String} [version="gearz"] The type/version of farewell image you want to use
+   * @param {Boolean} [bot=false] A boolean saying if the user is a bot or not
    * @param {String} avatar Avatar url
-   * @param {String} usertag User's tag
+   * @param {String} usertag User's tag, format: username#discrim
    * @returns {Promise<Buffer>}
    */
-  goodbye(version, bot, avatar, usertag) {
+  goodbye(version = "gearz", bot = false, avatar, usertag) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(`${version}_goodbye`, { bot, avatar, usertag });    
   }
@@ -251,7 +268,7 @@ class Client {
   _get(endpoint, query = {}) {
     return new Promise((resolve, reject) => {
       snekfetch.get(`${this.baseUrl}${endpoint}`)
-        .set("token", this.token)
+        .set(this.dev ? "Authorization" : "token", this.token)
         .query(query)
         .then(res => {
           if (res.status !== 200) return reject(res);
@@ -262,4 +279,4 @@ class Client {
 
 }
 
-module.exports = Client;
+module.exports = IdioticClient;

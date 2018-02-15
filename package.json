@@ -9,19 +9,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YorkAARGH/idiotic-api.git"
+    "url": "git+https://github.com/YorkAARGH/Idiotic-Wrapper.git"
   },
   "author": "An Idiot's Guide",
-  "contributors": ["Jacz"],
+  "contributors": [
+    "Jacz"
+  ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/YorkAARGH/idiotic-api/issues"
+    "url": "https://github.com/YorkAARGH/Idiotic-Wrapper/issues"
   },
-  "homepage": "https://github.com/YorkAARGH/idiotic-api#readme",
+  "homepage": "https://github.com/YorkAARGH/Idiotic-Wrapper#readme",
   "dependencies": {
-    "snekfetch": "^3.6.2"
+    "snekfetch": "^3.6.4"
   },
   "devDependencies": {
-    "eslint": "^4.16.0"
+    "eslint": "^4.17.0"
   }
 }
