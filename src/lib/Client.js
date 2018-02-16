@@ -180,12 +180,13 @@ class IdioticClient {
   /**
    * Missing endpoint
    * @param {String} image Image you except to be used
+   * @param {String} text text to except back
    * @returns {Promise<Buffer>}
    */
-  missing(avatar) {
+  missing(avatar, text) {
     if (!this.dev) throw new Error("Missing endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("missing", { avatar });
+    return this._get("missing", { avatar, text });
   }
 
   /* Double Image endpoints */
