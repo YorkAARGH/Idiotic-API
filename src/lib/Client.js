@@ -184,9 +184,9 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   missing(avatar, text) {
-    if (!this.dev) throw new Error("Missing endpoint is disabled while in production").then(body => Buffer.from(body.data.data));
+    if (!this.dev) throw new Error("Missing endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/missing", { avatar, text });
+    return this._get("generators/missing", { avatar, text }).then(body => Buffer.from(body.data.data));
   }
 
   /* Double Image endpoints */
@@ -236,7 +236,7 @@ class IdioticClient {
   crush(crusher, crush) {
     crusher = crusher.replace(imageUrlRegex, ".png");
     crush = crush.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/crush" : "crush", { crusher, crush }).then(body => Buffer.from(body.data.data));    
+    return this._get(this.dev ? "generators/crush" : "crush", { crusher, crush }).then(body => Buffer.from(body.data.data));
   }  
 
   /* Greetings endpoints */
@@ -268,6 +268,62 @@ class IdioticClient {
   goodbye(version = "gearz", bot = false, avatar, usertag) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? `greetings/${version}_goodbye` : `${version}_goodbye`, { bot, avatar, usertag }).then(body => Buffer.from(body.data.data));    
+  }
+
+  /* Filter endpoints */
+
+  brightness(avatar, brightness) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/brightness", { avatar, brightness}).then(body => Buffer.from(body.data.data));
+  }
+
+  darkness(avatar, darkness) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/darkness", { avatar, darkness}).then(body => Buffer.from(body.data.data));
+  }
+
+  greyscale(avatar) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/greyscale", { avatar }).then(body => Buffer.from(body.data.data));
+  }
+
+  invert(avatar) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/invert", { avatar }).then(body => Buffer.from(body.data.data));
+  }
+
+  iGrey(avatar) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/invertGreyscale", { avatar }).then(body => Buffer.from(body.data.data));
+  }
+
+  iThreshold(avatar, threshold) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/invertThreshold", { avatar, threshold }).then(body => Buffer.from(body.data.data));
+  }
+
+  sepia(avatar) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/sepia", { avatar }).then(body => Buffer.from(body.data.data));
+  }
+
+  silhouette(avatar) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/silhouette", { avatar }).then(body => Buffer.from(body.data.data));
+  }
+
+  threshold(avatar, threshold) {
+    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("effects/threshold", { avatar, threshold }).then(body => Buffer.from(body.data.data));
   }
 
   /**
