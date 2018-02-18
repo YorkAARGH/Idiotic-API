@@ -50,7 +50,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   blame(name) {
-    return this._get("blame", { name });
+    return this._get(this.dev ? "generators/blame": "blame", { name }).then(res => Buffer.from(res.body.data.data));
   }
 
   /**
@@ -59,7 +59,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   pls(name) {
-    return this._get("pls", { name });
+    return this._get(this.dev ? "generators/pls" : "pls", { name }).then(res => Buffer.from(res.body.data.data));
   }
 
   /**
@@ -68,7 +68,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   snapchat(text) {
-    return this._get("snapchat", { text });
+    return this._get(this.dev ? "generators/snapchat" : "snapchat", { text }).then(res => Buffer.from(res.body.data.data));
   }
 
   /* Image and Text endpoints */
@@ -81,7 +81,7 @@ class IdioticClient {
    */
   achievement(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("achievement", { avatar, text });  
+    return this._get(this.dev ? "generators/achievement" : "achievement", { avatar, text }).then(res => Buffer.from(res.body.data.data));  
   }  
 
   /**
@@ -92,7 +92,7 @@ class IdioticClient {
    */
   theSearch(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("thesearch", { avatar, text });  
+    return this._get(this.dev ? "generators/thesearch" : "thesearch", { avatar, text }).then(res => Buffer.from(res.body.data.data));  
   }  
 
   /* Single Image endpoints */
@@ -104,7 +104,7 @@ class IdioticClient {
    */
   beautiful(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("beautiful", { avatar });  
+    return this._get(this.dev ? "generators/beautiful" : "beautiful", { avatar }).then(res => Buffer.from(res.body.data.data));  
   }
 
   /**
@@ -114,7 +114,7 @@ class IdioticClient {
    */
   facepalm(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("facepalm", { avatar });
+    return this._get(this.dev ? "generators/facepalm" : "facepalm", { avatar }).then(res => Buffer.from(res.body.data.data));
   }
 
   /**
@@ -124,7 +124,7 @@ class IdioticClient {
    */
   respect(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("respect", { avatar });
+    return this._get(this.dev ? "generators/respect" : "respect", { avatar }).then(res => Buffer.from(res.body.data.data));
   }
 
   /**
@@ -134,7 +134,7 @@ class IdioticClient {
    */
   stepped(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("stepped", { avatar });
+    return this._get(this.dev ? "generators/stepped" : "stepped", { avatar }).then(res => Buffer.from(res.body.data.data));
   }
 
   /**
@@ -144,7 +144,7 @@ class IdioticClient {
    */
   tattoo(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("tattoo", { avatar });  
+    return this._get(this.dev ? "generators/tattoo" : "tattoo", { avatar }).then(res => Buffer.from(res.body.data.data));  
   }
 
   /**
@@ -154,7 +154,7 @@ class IdioticClient {
    */
   triggered(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("triggered", { avatar });  
+    return this._get(this.dev ? "generators/triggered" : "triggered", { avatar }).then(res => Buffer.from(res.body.data.data));  
   }
 
   /**
@@ -164,7 +164,7 @@ class IdioticClient {
    */
   vaultBoy(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("vault", { avatar });  
+    return this._get(this.dev ? "generators/vault" : "vault", { avatar }).then(res => Buffer.from(res.body.data.data));  
   }
 
   /**
@@ -174,7 +174,7 @@ class IdioticClient {
    */
   wanted(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("wanted", { avatar });
+    return this._get(this.dev ? "generators/wanted" : "wanted", { avatar }).then(res => Buffer.from(res.body.data.data));
   }
 
   /**
@@ -184,9 +184,9 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   missing(avatar, text) {
-    if (!this.dev) throw new Error("Missing endpoint is disabled while in production");
+    if (!this.dev) throw new Error("Missing endpoint is disabled while in production").then(res => Buffer.from(res.body.data.data));
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("missing", { avatar, text });
+    return this._get("generators/missing", { avatar, text });
   }
 
   /* Double Image endpoints */
@@ -200,7 +200,7 @@ class IdioticClient {
   batSlap(slapper, slapped) {
     slapper = slapper.replace(imageUrlRegex, ".png");
     slapped = slapped.replace(imageUrlRegex, ".png");
-    return this._get("batslap", { slapper, slapped });  
+    return this._get(this.dev ? "generators/batslap" : "batslap", { slapper, slapped }).then(res => Buffer.from(res.body.data.data));  
   }
 
   /**
@@ -212,7 +212,7 @@ class IdioticClient {
   superPunch(puncher, punched) {
     puncher = puncher.replace(imageUrlRegex, ".png");
     punched = punched.replace(imageUrlRegex, ".png");
-    return this._get("superpunch", { puncher, punched });  
+    return this._get(this.dev ? "generators/superpunch" : "superpunch", { puncher, punched }).then(res => Buffer.from(res.body.data.data));  
   }
 
   /**
@@ -224,7 +224,7 @@ class IdioticClient {
   fanSlap(slapper, slapped) {
     slapper = slapper.replace(imageUrlRegex, ".png");
     slapped = slapped.replace(imageUrlRegex, ".png");
-    return this._get("slap", { slapper, slapped });  
+    return this._get(this.dev ? "generators/slap" : "slap", { slapper, slapped }).then(res => Buffer.from(res.body.data.data));  
   }
 
   /**
@@ -236,7 +236,7 @@ class IdioticClient {
   crush(crusher, crush) {
     crusher = crusher.replace(imageUrlRegex, ".png");
     crush = crush.replace(imageUrlRegex, ".png");
-    return this._get("crush", { crusher, crush });    
+    return this._get(this.dev ? "generators/crush" : "crush", { crusher, crush }).then(res => Buffer.from(res.body.data.data));    
   }  
 
   /* Greetings endpoints */
@@ -252,7 +252,7 @@ class IdioticClient {
    */
   welcome(version = "gearz", bot = false, avatar, usertag, guild) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(`${version}_welcome`, { bot, avatar, usertag, guild });    
+    return this._get(this.dev ? `greetings/${version}_welcome` : `${version}_welcome`, { bot, avatar, usertag, guild }).then(res => Buffer.from(res.body.data.data));    
   }
 
   /* Farewell endpoints */
@@ -267,7 +267,7 @@ class IdioticClient {
    */
   goodbye(version = "gearz", bot = false, avatar, usertag) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(`${version}_goodbye`, { bot, avatar, usertag });    
+    return this._get(this.dev ? `greetings/${version}_goodbye` : `${version}_goodbye`, { bot, avatar, usertag }).then(res => Buffer.from(res.body.data.data));    
   }
 
   /**
