@@ -6,11 +6,11 @@ const imageUrlRegex = /.webp$/g;
  */
 class IdioticClient {
   /**
-	 * @typedef {Object} IdioticClientOptions
-	 * @property {String} [url] Base URL for Idiotic API
+   * @typedef {Object} IdioticClientOptions
+   * @property {String} [url] Base URL for Idiotic API
    * @property {Boolean} [dev=false]
-	 * @memberof IdioticClient
-	 */
+   * @memberof IdioticClient
+   */
 
   /**
    * @param {String} token Idiotic API token
@@ -82,7 +82,7 @@ class IdioticClient {
   achievement(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? "generators/achievement" : "achievement", { avatar, text }).then(body => Buffer.from(body.data.data));  
-  }  
+  }
 
   /**
    * TheSearch endpoint
@@ -93,7 +93,7 @@ class IdioticClient {
   theSearch(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? "generators/thesearch" : "thesearch", { avatar, text }).then(body => Buffer.from(body.data.data));  
-  }  
+  }
 
   /* Single Image endpoints */
 
@@ -237,7 +237,7 @@ class IdioticClient {
     crusher = crusher.replace(imageUrlRegex, ".png");
     crush = crush.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? "generators/crush" : "crush", { crusher, crush }).then(body => Buffer.from(body.data.data));
-  }  
+  }
 
   /* Greetings endpoints */
 
