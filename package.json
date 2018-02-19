@@ -1,7 +1,7 @@
 {
   "name": "idiotic-api",
-  "version": "0.0.6",
-  "description": "An api wrapper for the private idiots guide api",
+  "version": "0.1.6",
+  "description": "An API wrapper for the private Idiots Guide API",
   "main": "src/index.js",
   "scripts": {
     "test": "eslint src",
