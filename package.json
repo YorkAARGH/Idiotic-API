@@ -24,6 +24,6 @@
     "snekfetch": "^3.6.4"
   },
   "devDependencies": {
-    "eslint": "^4.17.0"
+    "eslint": "^4.18.1"
   }
 }
