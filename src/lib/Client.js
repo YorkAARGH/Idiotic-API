@@ -235,6 +235,17 @@ class IdioticClient {
     return this._get("generators/bobross", { avatar }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
 
+  /**
+   * WaifuInsult endpoint
+   * @param {String} avatar Image you except to be used
+   * @returns {Promise<Buffer>}
+   */
+  waifuinsult(avatar) {
+    if (!this.dev) throw new Error("WaifuInsult endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("generators/waifuinsult", { avatar }).then(body => this.dev ? Buffer.from(body.data) : body);
+  }
+
   /* Double Image endpoints */
 
   /**
@@ -250,18 +261,6 @@ class IdioticClient {
   }
 
   /**
-   * SuperPunch endpoint
-   * @param {String} puncher Image you expect to be used
-   * @param {String} punched Image you expect to be used
-   * @returns {Promise<Buffer>}
-   */
-  superPunch(puncher, punched) {
-    puncher = puncher.replace(imageUrlRegex, ".png");
-    punched = punched.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/superpunch" : "superpunch", { puncher, punched }).then(body => this.dev ? Buffer.from(body.data) : body);
-  }
-
-  /**
    * FanSlap endpoint
    * @param {String} slapper Image you expect to be used
    * @param {String} slapped Image you expect to be used
@@ -270,8 +269,20 @@ class IdioticClient {
   fanSlap(slapper, slapped) {
     slapper = slapper.replace(imageUrlRegex, ".png");
     slapped = slapped.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/slap" : "slap", { slapper, slapped }).then(body => this.dev ? Buffer.from(body.data) : body);
+    return this._get(this.dev ? "generators/fanslap" : "slap", { slapper, slapped }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
+
+  /**
+   * SuperPunch endpoint
+   * @param {String} puncher Image you expect to be used
+   * @param {String} punched Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  superPunch(puncher, punched) {
+    puncher = puncher.replace(imageUrlRegex, ".png");
+    punched = punched.replace(imageUrlRegex, ".png");
+    return this._get(this.dev ? "generators/superpunch" : "superpunch", { puncher, punched }).then(body => this.dev ? Buffer.from(body.data) : body);
+  }  
 
   /**
    * Crush endpoint
