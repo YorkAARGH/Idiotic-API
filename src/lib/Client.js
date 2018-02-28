@@ -296,6 +296,17 @@ class IdioticClient {
     return this._get(this.dev ? "generators/crush" : "crush", { crusher, crush }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
 
+  /**
+   * HeavyFear endpoint
+   * @param {String} avatar Image you expect to be used
+   * @returns {Promise<Buffer>} 
+   */
+  heavyfear(avatar) {
+    if (!this.dev) throw new Error("HeavyFear endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("generators/heavyfear", { avatar }).then(body => this.dev ? Buffer.from(body.data) : body);
+  }
+
   /* Greetings endpoints */
 
   /**
