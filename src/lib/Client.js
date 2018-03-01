@@ -246,6 +246,17 @@ class IdioticClient {
     return this._get("generators/waifuinsult", { avatar }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
 
+  /**
+   * HeavyFear endpoint
+   * @param {String} avatar Image you expect to be used
+   * @returns {Promise<Buffer>} 
+   */
+  heavyfear(avatar) {
+    if (!this.dev) throw new Error("HeavyFear endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("generators/heavyfear", { avatar }).then(body => Buffer.from(body.data.data));
+  }
+
   /* Double Image endpoints */
 
   /**
@@ -294,17 +305,6 @@ class IdioticClient {
     crusher = crusher.replace(imageUrlRegex, ".png");
     crush = crush.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? "generators/crush" : "crush", { crusher, crush }).then(body => this.dev ? Buffer.from(body.data) : body);
-  }
-
-  /**
-   * HeavyFear endpoint
-   * @param {String} avatar Image you expect to be used
-   * @returns {Promise<Buffer>} 
-   */
-  heavyfear(avatar) {
-    if (!this.dev) throw new Error("HeavyFear endpoint is disabled while in production");
-    avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/heavyfear", { avatar }).then(body => Buffer.from(body.data));
   }
 
   /* Greetings endpoints */
