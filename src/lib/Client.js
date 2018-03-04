@@ -257,6 +257,17 @@ class IdioticClient {
     return this._get("generators/heavyfear", { avatar }).then(body => Buffer.from(body.data.data));
   }
 
+  /**
+   * WreckIt endpoint
+   * @param {String} avatar Image you expect to be used
+   * @returns {Promise<Buffer>} 
+   */
+  wreckit(avatar) {
+    if (!this.dev) throw new Error("WreckIt endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("generators/wreckit", { avatar }).then(body => Buffer.from(body.data.data));
+  }
+
   /* Double Image endpoints */
 
   /**
