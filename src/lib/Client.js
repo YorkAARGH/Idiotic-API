@@ -260,18 +260,6 @@ class IdioticClient {
   /* Double Image endpoints */
 
   /**
- * Slap endpoint
- * @param {String} slapper Image you expect to be used
- * @param {String} slapped Image you expect to be used
- * @returns {Promise<Buffer>}
- */
-  slap(slapper, slapped) {
-    slapper = slapper.replace(imageUrlRegex, ".png");
-    slapped = slapped.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/slap" : "batslap", { slapper, slapped }).then(body => this.dev ? Buffer.from(body.data) : body);
-  }
-
-  /**
    * BatSlap endpoint
    * @param {String} slapper Image you expect to be used
    * @param {String} slapped Image you expect to be used
