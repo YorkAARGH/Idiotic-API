@@ -54,6 +54,33 @@ await message.channel.send(new MessageAttachment(
 const { user } = member;
 
 await message.channel.send(new MessageAttachment(
-  await client.api.welcome("gearz", user.bot, user.displayAvatarURL({ format: "png" }), user.tag,`${member.guild.name}#${member.guild.memberCount}`),
+  await client.api.gearzWelcome(user.bot, user.displayAvatarURL({ format: "png" }), user.tag,`${member.guild.name}#${member.guild.memberCount}`),
+  "welcome"));
+```
+### Anime Welcome
+
+```javascript
+const { user } = member;
+
+await message.channel.send(new MessageAttachment(
+  await client.api.animeWelcome(user.bot, user.displayAvatarURL({ format: "png" }), user.tag,`${member.guild.name}#${member.guild.memberCount}`),
+  "welcome"));
+```
+### Gearz Goodbye
+
+```javascript
+const { user } = member;
+
+await message.channel.send(new MessageAttachment(
+  await client.api.gearzGoodbye(user.bot, user.displayAvatarURL({ format: "png" }), user.tag,`${member.guild.name}#${member.guild.memberCount}`),
+  "welcome"));
+```
+### Anime Goodbye
+
+```javascript
+const { user } = member;
+
+await message.channel.send(new MessageAttachment(
+  await client.api.animeGoodbye(user.bot, user.displayAvatarURL({ format: "png" }), user.tag,`${member.guild.name}#${member.guild.memberCount}`),
   "welcome"));
 ```
