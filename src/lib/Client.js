@@ -229,7 +229,7 @@ class IdioticClient {
    * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  bobross(avatar) {
+  bobRoss(avatar) {
     if (!this.dev) throw new Error("Bobross endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/bobross", { avatar }).then(body => this.dev ? Buffer.from(body.data) : body);
@@ -240,7 +240,7 @@ class IdioticClient {
    * @param {String} avatar Image you except to be used
    * @returns {Promise<Buffer>}
    */
-  waifuinsult(avatar) {
+  waifuInsult(avatar) {
     if (!this.dev) throw new Error("WaifuInsult endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/waifuinsult", { avatar }).then(body => this.dev ? Buffer.from(body.data) : body);
@@ -251,7 +251,7 @@ class IdioticClient {
    * @param {String} avatar Image you expect to be used
    * @returns {Promise<Buffer>} 
    */
-  heavyfear(avatar) {
+  heavyFear(avatar) {
     if (!this.dev) throw new Error("HeavyFear endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/heavyfear", { avatar }).then(body => Buffer.from(body.data.data));
@@ -262,10 +262,21 @@ class IdioticClient {
    * @param {String} avatar Image you expect to be used
    * @returns {Promise<Buffer>} 
    */
-  wreckit(avatar) {
+  wreckIt(avatar) {
     if (!this.dev) throw new Error("WreckIt endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/wreckit", { avatar }).then(body => Buffer.from(body.data.data));
+  }
+
+  /**
+   * Painting endpoint
+   * @param {String} avatar Image you expect to be used
+   * @returns {Promise<Buffer>} 
+   */
+  painting(avatar) {
+    if (!this.dev) throw new Error("Painting endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("generators/painting", { avatar }).then(body => Buffer.from(body.data.data));
   }
 
   /* Double Image endpoints */
