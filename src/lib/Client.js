@@ -288,12 +288,12 @@ class IdioticClient {
    * @param {String} puncher Image you expect to be used
    * @param {String} punched Image you expect to be used
    * @returns {Promise<Buffer>}
-   */
+   */ 
   superPunch(puncher, punched) {
     puncher = puncher.replace(imageUrlRegex, ".png");
     punched = punched.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? "generators/superpunch" : "superpunch", { puncher, punched }).then(body => this.dev ? Buffer.from(body.data) : body);
-  }
+  }  
 
   /**
    * Crush endpoint
@@ -311,35 +311,54 @@ class IdioticClient {
 
   /**
    *
-   * @param {String} [version="gearz"] The type/version of greeting image you want to use
-   * @param {Boolean} [bot=false] A boolean saying if the user is a bot or not
+   * @param {Boolean} bot A boolean saying if the user is a bot or not
    * @param {String} avatar Avatar url
    * @param {String} usertag User's tag, format: username#discrim
    * @param {String} guild guild name and guild member count seperated by #, format: guildname#memberCount
    * @returns {Promise<Buffer>}
    */
-  welcome(version, bot, avatar, usertag, guild) {
-    if (!version instanceof String) throw new Error("Version must be a string");
-    if (!version === "gearz" && version === "anime") throw new Error("Version must be 'gearz' or 'anime'");
+  gearzWelcome(bot, avatar, usertag, guild) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? `greetings/${version}_welcome` : `${version}_welcome`, { bot, avatar, usertag, guild }).then(body => this.dev ? Buffer.from(body.data) : body);
+    return this._get(this.dev ? 'greetings/gearz_welcome' : 'gearz_welcome', { bot, avatar, usertag, guild }).then(body => this.dev ? Buffer.from(body.data) : body);
+  }
+
+   /**
+   *
+   * @param {Boolean} bot A boolean saying if the user is a bot or not
+   * @param {String} avatar Avatar url
+   * @param {String} usertag User's tag, format: username#discrim
+   * @param {String} guild guild name and guild member count seperated by #, format: guildname#memberCount
+   * @returns {Promise<Buffer>}
+   */
+  animeWelcome(bot, avatar, usertag, guild) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get(this.dev ? 'greetings/anime_welcome' : 'anime_welcome', { bot, avatar, usertag, guild }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
 
   /* Farewell endpoints */
 
   /**
    *
-   * @param {String} [version="gearz"] The type/version of farewell image you want to use
-   * @param {Boolean} [bot=false] A boolean saying if the user is a bot or not
+   * @param {Boolean} bot A boolean saying if the user is a bot or not
    * @param {String} avatar Avatar url
    * @param {String} usertag User's tag, format: username#discrim
    * @returns {Promise<Buffer>}
    */
-  goodbye(version, bot, avatar, usertag) {
-    if (!version instanceof String) throw new Error("Version must be a string");
-    if (!version === "gearz" && version === "anime") throw new Error("Version must be 'gearz' or 'anime'");
+  gearzGoodbye(bot, avatar, usertag) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? `greetings/${version}_goodbye` : `${version}_goodbye`, { bot, avatar, usertag }).then(body => this.dev ? Buffer.from(body.data) : body);
+    return this._get(this.dev ? 'greetings/gearz_goodbye' : 'gearz_goodbye', { bot, avatar, usertag }).then(body => this.dev ? Buffer.from(body.data) : body);
+  }
+
+   /**
+   *
+   * @param {Boolean} bot A boolean saying if the user is a bot or not
+   * @param {String} avatar Avatar url
+   * @param {String} usertag User's tag, format: username#discrim
+   * @returns {Promise<Buffer>}
+   */
+  animeGoodbye(bot, avatar, usertag) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get(this.dev ? 'greetings/anime_goodbye' : 'anime_goodbye', { bot, avatar, usertag }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
 
   /* Filter endpoints */
