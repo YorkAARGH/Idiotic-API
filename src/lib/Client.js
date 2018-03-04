@@ -288,12 +288,12 @@ class IdioticClient {
    * @param {String} puncher Image you expect to be used
    * @param {String} punched Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   superPunch(puncher, punched) {
     puncher = puncher.replace(imageUrlRegex, ".png");
     punched = punched.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? "generators/superpunch" : "superpunch", { puncher, punched }).then(body => this.dev ? Buffer.from(body.data) : body);
-  }  
+  }
 
   /**
    * Crush endpoint
@@ -318,7 +318,9 @@ class IdioticClient {
    * @param {String} guild guild name and guild member count seperated by #, format: guildname#memberCount
    * @returns {Promise<Buffer>}
    */
-  welcome(version = "gearz", bot = false, avatar, usertag, guild) {
+  welcome(version, bot, avatar, usertag, guild) {
+    if (!version instanceof String) throw new Error("Version must be a string");
+    if (!version === "gearz" && version === "anime") throw new Error("Version must be 'gearz' or 'anime'");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? `greetings/${version}_welcome` : `${version}_welcome`, { bot, avatar, usertag, guild }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
@@ -333,7 +335,9 @@ class IdioticClient {
    * @param {String} usertag User's tag, format: username#discrim
    * @returns {Promise<Buffer>}
    */
-  goodbye(version = "gearz", bot = false, avatar, usertag) {
+  goodbye(version, bot, avatar, usertag) {
+    if (!version instanceof String) throw new Error("Version must be a string");
+    if (!version === "gearz" && version === "anime") throw new Error("Version must be 'gearz' or 'anime'");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? `greetings/${version}_goodbye` : `${version}_goodbye`, { bot, avatar, usertag }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
