@@ -320,7 +320,7 @@ class IdioticClient {
    */
   welcome(version, bot, avatar, usertag, guild) {
     if (!version instanceof String) throw new Error("Version must be a string");
-    if (!version === "gearz" || version === "anime") throw new Error("Version must be 'gearz' or 'anime'");
+    if (!version === "gearz" && version === "anime") throw new Error("Version must be 'gearz' or 'anime'");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? `greetings/${version}_welcome` : `${version}_welcome`, { bot, avatar, usertag, guild }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
@@ -337,7 +337,7 @@ class IdioticClient {
    */
   goodbye(version, bot, avatar, usertag) {
     if (!version instanceof String) throw new Error("Version must be a string");
-    if (!version === "gearz" || version === "anime") throw new Error("Version must be 'gearz' or 'anime'");
+    if (!version === "gearz" && version === "anime") throw new Error("Version must be 'gearz' or 'anime'");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get(this.dev ? `greetings/${version}_goodbye` : `${version}_goodbye`, { bot, avatar, usertag }).then(body => this.dev ? Buffer.from(body.data) : body);
   }
