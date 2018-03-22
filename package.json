@@ -1,7 +1,7 @@
 {
   "name": "idiotic-api",
-  "version": "0.1.9",
-  "description": "An api wrapper for the private idiots guide api",
+  "version": "0.2.1",
+  "description": "An API wrapper for the private Idiot's Guide API",
   "main": "src/index.js",
   "scripts": {
     "test": "eslint src",
@@ -24,6 +24,6 @@
     "snekfetch": "^3.6.4"
   },
   "devDependencies": {
-    "eslint": "^4.18.2"
+    "eslint": "^4.19.1"
   }
 }
