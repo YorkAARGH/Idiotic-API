@@ -388,7 +388,7 @@ class IdioticClient {
     if (!this.dev) throw new Error("Tinder Match endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     match = match.replace(imageUrlRegex, ".png");
-    return this._get("generators/superspank", { avatar, match }).then(body => Buffer.from(body.data));
+    return this._get("generators/tinder", { avatar, match }).then(body => Buffer.from(body.data));
   }  
 
   /* Greetings endpoints */
