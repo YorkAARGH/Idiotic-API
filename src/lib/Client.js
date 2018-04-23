@@ -498,6 +498,20 @@ class IdioticClient {
     return this._get("overlays/rejected", { avatar }).then(body => Buffer.from(body));
   }
 
+  /* Text */
+
+  owoify(text) {
+    if (!this.dev) throw new Error("Owoify endpoint is disabled while in production");
+    if (typeof text !== "string") throw new TypeError("Text can only be a string");
+    return this._get("text/owoify", { text }).then(body => body.text);
+  }
+
+  mock(text) {
+    if (!this.dev) throw new Error("Mock endpoint is disabled while in production");
+    if (typeof text !== "string") throw new TypeError("Text can only be a string");
+    return this._get("text/mock", { text }).then(body => body.text);
+  }
+
   /**
    * A private method used to get endpoints with querys
    * @param {String} endpoint endpoint string
