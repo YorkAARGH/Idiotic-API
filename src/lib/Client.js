@@ -393,6 +393,16 @@ class IdioticClient {
     return this._get("generators/tinder", { avatar, match }).then(body => Buffer.from(body));
   }  
 
+  /**
+   * Colour endpoint
+   * @param {String} Colour Supply a colour code in any of these supported formats `hex`, `rgb`, `rgba`
+   * @returns {Promise<Buffer>}
+   */ 
+  colour(color) {
+    if (!this.dev) throw new Error("Colour endpoint is disabled while in production");
+    return this._get("generators/colour", { color }).then(body => Buffer.from(body));
+  }  
+
   /* Greetings endpoints */
 
   /**
