@@ -512,6 +512,26 @@ class IdioticClient {
     return this._get("text/mock", { text }).then(body => body.text);
   }
 
+  tiny(text, style) {
+    if (!this.dev) throw new Error("Tiny endpoint is disabled while in production");
+    if (typeof text !== "string") throw new TypeError("Text can only be a string");
+    if (style !== "tiny" || style !== "superscript" || style !== "subscript") throw new TypeError("Style must be either tiny, superscript or subscript");
+    return this._get("text/tinytext", { text, style }).then(body => body.text);
+  }
+
+  cursive(text, style) {
+    if (!this.dev) throw new Error("Cursive endpoint is disabled while in production");
+    if (typeof text !== "string") throw new TypeError("Text can only be a string");
+    if (style !== "normal" || style !== "bold") throw new TypeError("Style must be either normal or bold");
+    return this._get("text/cursive", { text, style }).then(body => body.text);
+  }
+
+  vapor(text) {
+    if (!this.dev) throw new Error("Vapor endpoint is disabled while in production");
+    if (typeof text !== "string") throw new TypeError("Text can only be a string");
+    return this._get("text/vaporwave", { text }).then(body => body.text);
+  }
+
   /**
    * A private method used to get endpoints with querys
    * @param {String} endpoint endpoint string
