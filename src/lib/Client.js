@@ -517,7 +517,7 @@ class IdioticClient {
   tiny(text, style) {
     if (!this.dev) throw new Error("Tiny endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    if (tinyStyles.includes(style)) throw new TypeError("Style must be either tiny, superscript or subscript");
+    if (!tinyStyles.includes(style)) throw new TypeError("Style must be either tiny, superscript or subscript");
     return this._get("text/tinytext", { text, style }).then(body => body.text);
   }
 
