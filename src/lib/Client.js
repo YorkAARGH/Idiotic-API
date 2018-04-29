@@ -398,9 +398,9 @@ class IdioticClient {
    * @param {String} Colour Supply a colour code in any of these supported formats `hex`, `rgb`, `rgba`
    * @returns {Promise<Buffer>}
    */ 
-  colour(color) {
+  colour(colour) {
     if (!this.dev) throw new Error("Colour endpoint is disabled while in production");
-    return this._get("generators/colour", { color }).then(body => Buffer.from(body));
+    return this._get("generators/colour", { colour }).then(body => Buffer.from(body));
   }  
 
   /* Greetings endpoints */
