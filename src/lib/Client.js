@@ -394,8 +394,17 @@ class IdioticClient {
   }  
 
   /**
+   * Color endpoint
+   * @param {String} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
+   * @returns {Promise<Buffer>}
+   */ 
+  color(...args) {
+    return this.colour(...args);
+  }
+  
+  /**
    * Colour endpoint
-   * @param {String} Colour Supply a colour code in any of these supported formats `hex`, `rgb`, `rgba`
+   * @param {String} colour Supply a colour code in any of these supported formats `hex`, `rgb`, `rgba`
    * @returns {Promise<Buffer>}
    */ 
   colour(colour) {
