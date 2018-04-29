@@ -1,5 +1,7 @@
 const snekfetch = require("snekfetch");
 const imageUrlRegex = /.webp$/g;
+const cursiveStyles = ["bold", "normal"];
+const tinyStyles = ["tiny", "superscript", "subscript"];
 
 /**
  * Client for Idiotic-api Wrapper
@@ -515,14 +517,14 @@ class IdioticClient {
   tiny(text, style) {
     if (!this.dev) throw new Error("Tiny endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    if (style !== "tiny" || style !== "superscript" || style !== "subscript") throw new TypeError("Style must be either tiny, superscript or subscript");
+    if (tinyStyles.includes(style)) throw new TypeError("Style must be either tiny, superscript or subscript");
     return this._get("text/tinytext", { text, style }).then(body => body.text);
   }
 
   cursive(text, style) {
     if (!this.dev) throw new Error("Cursive endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    if (style !== "normal" || style !== "bold") throw new TypeError("Style must be either normal or bold");
+    if (!cursiveStyles.includes(style)) throw new TypeError("Style must be either normal or bold");
     return this._get("text/cursive", { text, style }).then(body => body.text);
   }
 
