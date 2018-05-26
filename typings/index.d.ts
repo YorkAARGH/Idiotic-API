@@ -42,6 +42,8 @@ declare module "idiotic-api" {
         public tinderMatch(avatar: string, match: string): Promise<Buffer>;
         public colour(colour: string): Promise<Buffer>;
         public color(color: string): Promise<Buffer>;
+        public religion(avatar: string): Promise<Buffer>;
+        public coffee(text1: string, text2: string): Promise<Buffer>;
         public welcome(version?: string, bot?: boolean, avatar: string, usertag: string, guild: string): Promise<Buffer>;
         public goodbye(version?: string, bot?: boolean, avatar: string, usertag: string): Promise<Buffer>;
         public brightness(avatar: string, brightness: number): Promise<Buffer>;
