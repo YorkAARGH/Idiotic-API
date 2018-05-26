@@ -27,6 +27,10 @@ await message.channel.send(new MessageAttachment(
   "achievement.png"));
 ```
 
+**Example:**
+
+![Achievement Get!, used the api!](https://i.imgur.com/AMtRJIi.png)
+
 **Bat Slap**
 
 ```javascript
@@ -36,6 +40,10 @@ await message.channel.send(new MessageAttachment(
   "batslap.png"));
 ```
 
+**Example:**
+
+![POW](https://i.imgur.com/eUhtD0n.png)
+
 **Wanted**
 
 ```javascript
@@ -43,6 +51,10 @@ await message.channel.send(new MessageAttachment(
   await client.API.wanted(message.author.displayAvatarURL({ format: "png", size: 128 })),
   "wanted.png"));
 ```
+
+**Example:**
+
+![Dead or alive](https://i.imgur.com/3wClggw.png)
 
 **pls**
 
@@ -52,11 +64,19 @@ await message.channel.send(new MessageAttachment(
   "pls.png"));
 ```
 
+**Example:**
+
+![York pls](https://i.imgur.com/504PYeg.png)
+
 ***Greeting/Farewell Based Endpoints***
 
-**Gearz Welcome**
+**Anime Welcome**
 _Placed inside your GuildMemberAdd event_
 
 ```javascript
-await client.API.welcome("gearz", member.user.bot, member.user.displayAvatarURL({ format: "png", size: 128 }), member.user.tag,`${member.guild.name}#${member.guild.memberCount}`);
+await client.API.welcome("anime", member.user.bot, member.user.displayAvatarURL({ format: "png", size: 128 }), member.user.tag,`${member.guild.name}#${member.guild.memberCount}`);
 ```
+
+**Example:**
+
+![Example welcome image](https://i.imgur.com/MAvDuNR.png)
