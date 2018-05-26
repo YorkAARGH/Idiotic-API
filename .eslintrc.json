@@ -53,6 +53,23 @@
         "destructuring": "any",
         "ignoreReadBeforeAssign": false
       }
+    ],
+    "valid-jsdoc": [
+      "warn",
+      {
+        "requireReturn": false,
+        "requireReturnDescription": false,
+        "preferType": {
+          "String": "string",
+          "Number": "number",
+          "Boolean": "boolean",
+          "Symbol": "symbol",
+          "function": "Function",
+          "object": "Object",
+          "Date": "date",
+          "error": "Error"
+        }
+      }
     ]
   }
 }
