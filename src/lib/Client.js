@@ -26,8 +26,9 @@ class IdioticClient {
     /**
      * Idiot's Guide API token
      * @type {String}
+     * @private
      */
-    this.token = token;
+    Object.defineProperty(this, "token", { value: token });
     /**
      * Client options
      * @type {Object}
@@ -394,15 +395,6 @@ class IdioticClient {
   }  
 
   /**
-   * Color endpoint
-   * @param {string} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
-   * @returns {Promise<Buffer>}
-   */ 
-  color(...args) {
-    return this.colour(...args);
-  }
-  
-  /**
    * Colour endpoint
    * @param {string} colour Supply a colour code in any of these supported formats `hex`, `rgb`, `rgba`
    * @returns {Promise<Buffer>}
@@ -410,7 +402,16 @@ class IdioticClient {
   colour(colour) {
     if (!this.dev) throw new Error("Colour endpoint is disabled while in production");
     return this._get("generators/colour", { colour }).then(body => Buffer.from(body));
-  }  
+  }
+  
+  /**
+   * Color endpoint
+   * @param {String} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
+   * @returns {Promise<Buffer>}
+   */ 
+  color(...args) {
+    return this.colour(...args);
+  }
 
   /**
    * Religion endpoint
