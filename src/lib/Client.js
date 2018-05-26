@@ -26,8 +26,9 @@ class IdioticClient {
     /**
      * Idiot's Guide API token
      * @type {String}
+     * @private
      */
-    this.token = token;
+    Object.defineProperty(this, "token", { value: token });
     /**
      * Client options
      * @type {Object}
