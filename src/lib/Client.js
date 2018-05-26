@@ -395,15 +395,6 @@ class IdioticClient {
   }  
 
   /**
-   * Color endpoint
-   * @param {String} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
-   * @returns {Promise<Buffer>}
-   */ 
-  color(...args) {
-    return this.colour(...args);
-  }
-  
-  /**
    * Colour endpoint
    * @param {String} colour Supply a colour code in any of these supported formats `hex`, `rgb`, `rgba`
    * @returns {Promise<Buffer>}
@@ -411,7 +402,16 @@ class IdioticClient {
   colour(colour) {
     if (!this.dev) throw new Error("Colour endpoint is disabled while in production");
     return this._get("generators/colour", { colour }).then(body => Buffer.from(body));
-  }  
+  }
+  
+  /**
+   * Color endpoint
+   * @param {String} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
+   * @returns {Promise<Buffer>}
+   */ 
+  color(...args) {
+    return this.colour(...args);
+  }
 
   /* Greetings endpoints */
 
