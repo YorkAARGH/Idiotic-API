@@ -63,6 +63,7 @@ declare module "idiotic-api" {
         public tiny(text: string, style: tinyStyle): Promise<string>;
         public cursive(text: string, style: cursiveStyle): Promise<string>;
         public vapor(text: string): Promise<string>;
+        public misakiProfile(name: string, score: string, avatar: string): Promise<Buffer>;
         public _get(endpoint: string, query?: { [key: string]: string }): Promise<any>;
     }
 

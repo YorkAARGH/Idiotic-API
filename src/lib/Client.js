@@ -668,6 +668,23 @@ class IdioticClient {
   }
 
   /**
+   * Misaki exclusive end points
+   * These are strictly for Misaki only.
+   */
+
+  /**
+   * Misaki Profile endpoint
+   * @param {string} name The name of the profile owner
+   * @param {object} score The score object
+   * @param {string} avatar The URL of the avatar of the profile owner
+   * @returns {Promise<Buffer>}
+   */
+  misakiProfile(name, score, avatar) {
+    if (!this.dev) throw new Error("Misaki Profile endpoint is disabled while in production");
+    return this._get("profiles/misaki", { name, score, avatar }).then(body => Buffer.from(body));
+  }
+
+  /**
    * A private method used to get endpoints with querys
    * @param {string} endpoint endpoint string
    * @param {Object} [query={}] query object
