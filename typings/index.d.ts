@@ -9,7 +9,7 @@ declare module "idiotic-api" {
         public options?: IdioticClientOptions;
         public dev: boolean;
         public baseUrl: string;
-
+        /* Generators */
         public blame(name: string): Promise<Buffer>;
         public pls(name: string): Promise<Buffer>;
         public snapchat(text: string): Promise<Buffer>;
@@ -44,8 +44,16 @@ declare module "idiotic-api" {
         public color(color: string): Promise<Buffer>;
         public religion(avatar: string): Promise<Buffer>;
         public coffee(text1: string, text2: string): Promise<Buffer>;
+        public zerotwo(avatar: string): Promise<Buffer>;
+        public girls(avatar: string): Promise<Buffer>;
+        public hates(avatar: string): Promise<Buffer>;
+        public hide(avatar: string, target: string): Promise<Buffer>;
+        public ignore(avatar: string): Promise<Buffer>;
+        public time(avatar: string): Promise<Buffer>;
+        /* Greetings */
         public welcome(version?: string, bot?: boolean, avatar: string, usertag: string, guild: string): Promise<Buffer>;
         public goodbye(version?: string, bot?: boolean, avatar: string, usertag: string): Promise<Buffer>;
+        /* Effects */
         public brightness(avatar: string, brightness: number): Promise<Buffer>;
         public darkness(avatar: string, darkness: number): Promise<Buffer>;
         public greyscale(avatar: string): Promise<Buffer>;
@@ -55,15 +63,17 @@ declare module "idiotic-api" {
         public sepia(avatar: string): Promise<Buffer>;
         public silhouette(avatar: string): Promise<Buffer>;
         public threshold(avatar: string, threshold: number): Promise<Buffer>;
+        /* Overlays */
         public rainbow(avatar: string): Promise<Buffer>;
         public approved(avatar: string): Promise<Buffer>;
         public rejected(avatar: string): promise<Buffer>;
+        /* Text */
         public owoify(text: string): Promise<string>;
         public mock(text: string): Promise<string>;
         public tiny(text: string, style: tinyStyle): Promise<string>;
         public cursive(text: string, style: cursiveStyle): Promise<string>;
         public vapor(text: string): Promise<string>;
-        public misakiProfile(name: string, score: string, avatar: string): Promise<Buffer>;
+        /* Private */
         public _get(endpoint: string, query?: { [key: string]: string }): Promise<any>;
     }
 

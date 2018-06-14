@@ -435,6 +435,67 @@ class IdioticClient {
     return this._get("generators/coffee", { text1, text2 }).then(body => Buffer.from(body));
   }  
 
+  /**
+   * Zero Two Picture endpoint
+   * @param {string} avatar Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  zerotwo(avatar) {
+    if (!this.dev) throw new Error("Zero Two endpoint is disabled while in production");
+    return this._get("generators/02picture", { avatar }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Girls endpoint
+   * @param {string} avatar Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  girls(avatar) {
+    if (!this.dev) throw new Error("Girls endpoint is disabled while in production");
+    return this._get("generators/girls", { avatar }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Hates endpoint
+   * @param {string} avatar Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  hates(avatar) {
+    if (!this.dev) throw new Error("Hates endpoint is disabled while in production");
+    return this._get("generators/hates", { avatar }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Hide endpoint
+   * @param {string} avatar Image you expect to be used
+   * @param {string} target Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  hide(avatar, target) {
+    if (!this.dev) throw new Error("Hide endpoint is disabled while in production");
+    return this._get("generators/hide", { avatar, target }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Ignore endpoint
+   * @param {string} avatar Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  ignore(avatar) {
+    if (!this.dev) throw new Error("Ignore endpoint is disabled while in production");
+    return this._get("generators/ignore", { avatar }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Time endpoint
+   * @param {string} avatar Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  time(avatar) {
+    if (!this.dev) throw new Error("Time endpoint is disabled while in production");
+    return this._get("generators/time", { avatar }).then(body => Buffer.from(body));
+  }  
+
   /* Greetings endpoints */
 
   /**
@@ -665,23 +726,6 @@ class IdioticClient {
     if (!this.dev) throw new Error("Vapor endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     return this._get("text/vaporwave", { text }).then(body => body.text);
-  }
-
-  /**
-   * Misaki exclusive end points
-   * These are strictly for Misaki only.
-   */
-
-  /**
-   * Misaki Profile endpoint
-   * @param {string} name The name of the profile owner
-   * @param {object} score The score object
-   * @param {string} avatar The URL of the avatar of the profile owner
-   * @returns {Promise<Buffer>}
-   */
-  misakiProfile(name, score, avatar) {
-    if (!this.dev) throw new Error("Misaki Profile endpoint is disabled while in production");
-    return this._get("profiles/misaki", { name, score, avatar }).then(body => Buffer.from(body));
   }
 
   /**
