@@ -11,7 +11,7 @@ class IdioticClient {
   /**
    * @typedef {Object} IdioticClientOptions
    * @property {String} [url] Base URL for Idiotic API
-   * @property {Boolean} [dev=false]
+   * @property {boolean} [dev=false]
    * @memberof IdioticClient
    */
 
@@ -24,24 +24,21 @@ class IdioticClient {
     if (typeof token !== "string") throw new SyntaxError("Invalid Token: Token must be a String");
 
     /**
-     * Idiot's Guide API token
-     * @type {String}
+     * Idiotic API token
+     * @type {string}
      * @private
      */
     Object.defineProperty(this, "token", { value: token });
-    /**
-     * Client options
-     * @type {Object}
-     */
-    this.options = options;
+
     /**
      * Whether to use the dev endpoint
-     * @type {Boolean}
+     * @type {boolean}
      */
-    this.dev = options.dev || false;
+    this.dev = "dev" in options ? options.dev : false;
+
     /**
-     * Base URL for Idiot's Guide API
-     * @type {String}
+     * Base URL for Idiotic API
+     * @type {string}
      */
     this.baseUrl = options.url || this.dev ? "https://dev.anidiots.guide/" : "https://api.anidiots.guide/api/";
   }
@@ -126,7 +123,11 @@ class IdioticClient {
   /**
    * Missing endpoint
    * @param {string} avatar Image you except to be used
+<<<<<<< HEAD
+   * @param {string} suggestion text to except back
+=======
    * @param {string} text text to except back
+>>>>>>> 4ee4af4d95a12841566e332af51a71f676802cd2
    * @returns {Promise<Buffer>}
    */
   suggestion(avatar, suggestion) {
@@ -358,7 +359,11 @@ class IdioticClient {
   /**
    * Confused endpoint
    * @param {string} avatar Image you expect to be used
+<<<<<<< HEAD
+   * @param {string} photo Image you expect to be used
+=======
    * @param {string} slapped Image you expect to be used
+>>>>>>> 4ee4af4d95a12841566e332af51a71f676802cd2
    * @returns {Promise<Buffer>}
    */
   confused(avatar, photo) {
@@ -406,7 +411,7 @@ class IdioticClient {
   
   /**
    * Color endpoint
-   * @param {String} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
+   * @param {string} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
    * @returns {Promise<Buffer>}
    */ 
   color(...args) {
@@ -748,5 +753,14 @@ class IdioticClient {
   }
 
 }
+
+const notAllowedMethods = ["constructor", "_get"];
+const METHODS = Object.getOwnPropertyNames(IdioticClient.prototype).filter(method => !notAllowedMethods.includes(method));
+for (const method of METHODS) Object.defineProperty(IdioticClient, method, {
+  value: function(token, ...params) {
+    if (typeof token === "object" && token !== null) return new IdioticClient(token.token, token)[method](...params);
+    else return new IdioticClient(token)[method](...params);
+  }
+});
 
 module.exports = IdioticClient;
