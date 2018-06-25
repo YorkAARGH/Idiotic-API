@@ -736,15 +736,13 @@ class IdioticClient {
    * @private
    */
   _get(endpoint, query = {}) {
-    return new Promise((resolve, reject) => {
-      snekfetch.get(`${this.baseUrl}${endpoint}`)
-        .set(this.dev ? "Authorization" : "token", this.token)
-        .query(query)
-        .then(res => {
-          if (res.status !== 200) return reject(res);
-          return resolve(res.body);
-        }).catch(err => reject(err));
-    });
+    return snekfetch.get(`${this.baseUrl}${endpoint}`)
+      .set(this.dev ? "Authorization" : "token", this.token)
+      .query(query)
+      .then(res => {
+        if (res.status !== 200) throw res;
+        return res.body;
+      });
   }
 
 }
