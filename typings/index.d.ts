@@ -50,6 +50,11 @@ declare module "idiotic-api" {
         public hide(avatar: string, target: string): Promise<Buffer>;
         public ignore(avatar: string): Promise<Buffer>;
         public time(avatar: string): Promise<Buffer>;
+        public osu(user: string, theme: string): Promise<Buffer>;
+        public sniper(avatar: string): Promise<Buffer>;
+        public changemymind(avatar: string, text: string): Promise<Buffer>;
+        public virtual(avatar: string): Promise<Buffer>;
+        public kirby(avatar: string, text: string): Promise<Buffer>;
         /* Greetings */
         public welcome(version?: string, bot?: boolean, avatar: string, usertag: string, guild: string): Promise<Buffer>;
         public goodbye(version?: string, bot?: boolean, avatar: string, usertag: string): Promise<Buffer>;
@@ -66,7 +71,7 @@ declare module "idiotic-api" {
         /* Overlays */
         public rainbow(avatar: string): Promise<Buffer>;
         public approved(avatar: string): Promise<Buffer>;
-        public rejected(avatar: string): promise<Buffer>;
+        public rejected(avatar: string): Promise<Buffer>;
         /* Text */
         public owoify(text: string): Promise<string>;
         public mock(text: string): Promise<string>;
@@ -87,4 +92,5 @@ declare module "idiotic-api" {
 
     export type tinyStyle = "tiny" | "superscript" | "subscript";
     export type cursiveStyle = "bold" | "normal";
+    export type osuTheme = "light" | "dark" | "darker";
 }

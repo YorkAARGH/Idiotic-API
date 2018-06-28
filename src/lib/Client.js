@@ -496,6 +496,59 @@ class IdioticClient {
     return this._get("generators/time", { avatar }).then(body => Buffer.from(body));
   }  
 
+  /**
+   * osu! endpoint
+   * @param {string} user This is the osu! username.
+   * @param {string} theme Select between 3 valid themes, light, dark and darker
+   * @returns {Promise<Buffer>}
+   */ 
+  osu(user, theme = "dark") {
+    if (!this.dev) throw new Error("osu endpoint is disabled while in production");
+    return this._get("generators/osu", { user, theme }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Sniper endpoint
+   * @param {string} avatar Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  sniper(avatar) {
+    if (!this.dev) throw new Error("Sniper endpoint is disabled while in production");
+    return this._get("generators/sniper", { avatar }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Change my mind endpoint
+   * @param {string} avatar Image you expect to be used
+   * @param {string} text Supply the build up text
+   * @returns {Promise<Buffer>}
+   */ 
+  changemymind(avatar, text) {
+    if (!this.dev) throw new Error("Change my mind endpoint is disabled while in production");
+    return this._get("generators/changemymind", { avatar, text }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Virtual endpoint
+   * @param {string} avatar Image you expect to be used
+   * @returns {Promise<Buffer>}
+   */ 
+  virtual(avatar) {
+    if (!this.dev) throw new Error("Virtual endpoint is disabled while in production");
+    return this._get("generators/vr", { avatar }).then(body => Buffer.from(body));
+  }  
+
+  /**
+   * Kirby School endpoint
+   * @param {string} avatar Image you expect to be used
+   * @param {string} text Supply the build up text
+   * @returns {Promise<Buffer>}
+   */ 
+  kirby(avatar, text) {
+    if (!this.dev) throw new Error("Kirby School endpoint is disabled while in production");
+    return this._get("generators/kirby", { avatar, text }).then(body => Buffer.from(body));
+  }  
+
   /* Greetings endpoints */
 
   /**
