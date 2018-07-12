@@ -1,7 +1,9 @@
-const snekfetch = require("snekfetch");
+const fetch = require("node-fetch");
+const querystring = require("querystring");
 const imageUrlRegex = /.webp$/g;
 const cursiveStyles = ["bold", "normal"];
 const tinyStyles = ["tiny", "superscript", "subscript"];
+const osuThemes = ["light", "dark", "darker"];
 
 /**
  * Client for Idiotic-api Wrapper
@@ -54,7 +56,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   blame(name) {
-    return this._get(this.dev ? "generators/blame" : "blame", { name }).then(body => Buffer.from(body));
+    return this._get("generators/blame", { name }).then(body => Buffer.from(body));
   }
 
   /**
@@ -63,7 +65,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   pls(name) {
-    return this._get(this.dev ? "generators/pls" : "pls", { name }).then(body => Buffer.from(body));
+    return this._get("generators/pls", { name }).then(body => Buffer.from(body));
   }
 
   /**
@@ -72,7 +74,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   snapchat(text) {
-    return this._get(this.dev ? "generators/snapchat" : "snapchat", { text }).then(body => Buffer.from(body));
+    return this._get("generators/snapchat", { text }).then(body => Buffer.from(body));
   }
 
   /* Image and Text endpoints */
@@ -85,7 +87,7 @@ class IdioticClient {
    */
   achievement(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/achievement" : "achievement", { avatar, text }).then(body => Buffer.from(body));
+    return this._get("generators/achievement", { avatar, text }).then(body => Buffer.from(body));
   }
 
   /**
@@ -96,7 +98,7 @@ class IdioticClient {
    */
   theSearch(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/thesearch" : "thesearch", { avatar, text }).then(body => Buffer.from(body));
+    return this._get("generators/thesearch", { avatar, text }).then(body => Buffer.from(body));
   }
 
   /**
@@ -106,7 +108,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   missing(avatar, text) {
-    if (!this.dev) throw new Error("Missing endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/missing", { avatar, text }).then(body => Buffer.from(body));
   }
@@ -118,7 +119,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   steam(avatar, text) {
-    if (!this.dev) throw new Error("Steam endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/steam", { avatar, text }).then(body => Buffer.from(body));
   }
@@ -130,7 +130,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   suggestion(avatar, suggestion) {
-    if (!this.dev) throw new Error("Suggestion endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/suggestion", { avatar, suggestion }).then(body => Buffer.from(body));
   }
@@ -144,7 +143,7 @@ class IdioticClient {
    */
   beautiful(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/beautiful" : "beautiful", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/beautiful", { avatar }).then(body => Buffer.from(body));
   }
 
   /**
@@ -154,7 +153,7 @@ class IdioticClient {
    */
   facepalm(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/facepalm" : "facepalm", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/facepalm", { avatar }).then(body => Buffer.from(body));
   }
 
   /**
@@ -164,7 +163,7 @@ class IdioticClient {
    */
   respect(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/respect" : "respect", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/respect", { avatar }).then(body => Buffer.from(body));
   }
 
   /**
@@ -174,7 +173,7 @@ class IdioticClient {
    */
   stepped(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/stepped" : "stepped", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/stepped", { avatar }).then(body => Buffer.from(body));
   }
 
   /**
@@ -184,7 +183,7 @@ class IdioticClient {
    */
   tattoo(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/tattoo" : "tattoo", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/tattoo", { avatar }).then(body => Buffer.from(body));
   }
 
   /**
@@ -194,7 +193,7 @@ class IdioticClient {
    */
   triggered(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/triggered" : "triggered", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/triggered", { avatar }).then(body => Buffer.from(body));
   }
 
   /**
@@ -204,7 +203,7 @@ class IdioticClient {
    */
   vaultBoy(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/vault" : "vault", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/vault", { avatar }).then(body => Buffer.from(body));
   }
 
   /**
@@ -214,7 +213,7 @@ class IdioticClient {
    */
   wanted(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/wanted" : "wanted", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/wanted", { avatar }).then(body => Buffer.from(body));
   }
 
   /**
@@ -223,7 +222,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   karen(avatar) {
-    if (!this.dev) throw new Error("Karen endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/karen", { avatar }).then(body => Buffer.from(body));
   }
@@ -234,7 +232,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   challenger(avatar) {
-    if (!this.dev) throw new Error("Challenger endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/challenger", { avatar }).then(body => Buffer.from(body));
   }
@@ -245,7 +242,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   bobRoss(avatar) {
-    if (!this.dev) throw new Error("Bobross endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/bobross", { avatar }).then(body => Buffer.from(body));
   }
@@ -256,7 +252,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   waifuInsult(avatar) {
-    if (!this.dev) throw new Error("WaifuInsult endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/waifuinsult", { avatar }).then(body => Buffer.from(body));
   }
@@ -267,7 +262,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>} 
    */
   heavyFear(avatar) {
-    if (!this.dev) throw new Error("HeavyFear endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/heavyfear", { avatar }).then(body => Buffer.from(body));
   }
@@ -278,7 +272,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>} 
    */
   wreckIt(avatar) {
-    if (!this.dev) throw new Error("WreckIt endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/wreckit", { avatar }).then(body => Buffer.from(body));
   }
@@ -289,7 +282,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>} 
    */
   painting(avatar) {
-    if (!this.dev) throw new Error("Painting endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/painting", { avatar }).then(body => Buffer.from(body));
   }
@@ -300,7 +292,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   garbage(avatar) {
-    if (!this.dev) throw new Error("Garbage endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/garbage", { avatar }).then(body => Buffer.from(body));
   }
@@ -316,7 +307,7 @@ class IdioticClient {
   batSlap(slapper, slapped) {
     slapper = slapper.replace(imageUrlRegex, ".png");
     slapped = slapped.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/batslap" : "batslap", { slapper, slapped }).then(body => Buffer.from(body));
+    return this._get("generators/batslap", { slapper, slapped }).then(body => Buffer.from(body));
   }
 
   /**
@@ -328,7 +319,7 @@ class IdioticClient {
   fanSlap(slapper, slapped) {
     slapper = slapper.replace(imageUrlRegex, ".png");
     slapped = slapped.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/fanslap" : "slap", { slapper, slapped }).then(body => Buffer.from(body));
+    return this._get("generators/fanslap", { slapper, slapped }).then(body => Buffer.from(body));
   }
 
   /**
@@ -340,7 +331,7 @@ class IdioticClient {
   superPunch(puncher, punched) {
     puncher = puncher.replace(imageUrlRegex, ".png");
     punched = punched.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/superpunch" : "superpunch", { puncher, punched }).then(body => Buffer.from(body));
+    return this._get("generators/superpunch", { puncher, punched }).then(body => Buffer.from(body));
   }  
 
   /**
@@ -352,7 +343,7 @@ class IdioticClient {
   crush(crusher, crush) {
     crusher = crusher.replace(imageUrlRegex, ".png");
     crush = crush.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? "generators/crush" : "crush", { crusher, crush }).then(body => Buffer.from(body));
+    return this._get("generators/crush", { crusher, crush }).then(body => Buffer.from(body));
   }
 
   /**
@@ -362,7 +353,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   confused(avatar, photo) {
-    if (!this.dev) throw new Error("Confused endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     photo = photo.replace(imageUrlRegex, ".png");
     return this._get("generators/confused", { avatar, photo }).then(body => Buffer.from(body));
@@ -375,7 +365,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   superSpank(spanker, spanked) {
-    if (!this.dev) throw new Error("Super Spank endpoint is disabled while in production");
     spanker = spanker.replace(imageUrlRegex, ".png");
     spanked = spanked.replace(imageUrlRegex, ".png");
     return this._get("generators/superspank", { spanker, spanked }).then(body => Buffer.from(body));
@@ -388,7 +377,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   tinderMatch(avatar, match) {
-    if (!this.dev) throw new Error("Tinder Match endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     match = match.replace(imageUrlRegex, ".png");
     return this._get("generators/tinder", { avatar, match }).then(body => Buffer.from(body));
@@ -400,7 +388,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   colour(colour) {
-    if (!this.dev) throw new Error("Colour endpoint is disabled while in production");
     return this._get("generators/colour", { colour }).then(body => Buffer.from(body));
   }
   
@@ -419,7 +406,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   religion(avatar) {
-    if (!this.dev) throw new Error("Religion endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/religion", { avatar }).then(body => Buffer.from(body));
   }  
@@ -431,7 +417,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   coffee(text1, text2) {
-    if (!this.dev) throw new Error("Coffee endpoint is disabled while in production");
     return this._get("generators/coffee", { text1, text2 }).then(body => Buffer.from(body));
   }  
 
@@ -441,7 +426,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   zerotwo(avatar) {
-    if (!this.dev) throw new Error("Zero Two endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/02picture", { avatar }).then(body => Buffer.from(body));
   }  
 
@@ -451,7 +436,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   girls(avatar) {
-    if (!this.dev) throw new Error("Girls endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/girls", { avatar }).then(body => Buffer.from(body));
   }  
 
@@ -461,7 +446,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   hates(avatar) {
-    if (!this.dev) throw new Error("Hates endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/hates", { avatar }).then(body => Buffer.from(body));
   }  
 
@@ -472,7 +457,8 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   hide(avatar, target) {
-    if (!this.dev) throw new Error("Hide endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    target = target.replace(imageUrlRegex, ".png");
     return this._get("generators/hide", { avatar, target }).then(body => Buffer.from(body));
   }  
 
@@ -482,7 +468,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   ignore(avatar) {
-    if (!this.dev) throw new Error("Ignore endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/ignore", { avatar }).then(body => Buffer.from(body));
   }  
 
@@ -492,7 +478,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   time(avatar) {
-    if (!this.dev) throw new Error("Time endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/time", { avatar }).then(body => Buffer.from(body));
   }  
 
@@ -502,8 +488,8 @@ class IdioticClient {
    * @param {string} theme Select between 3 valid themes, light, dark and darker
    * @returns {Promise<Buffer>}
    */ 
-  osu(user, theme = "dark") {
-    if (!this.dev) throw new Error("osu endpoint is disabled while in production");
+  osu(user, theme) {
+    if (!osuThemes.includes(theme)) throw new TypeError("Theme must be either light, dark or darker");
     return this._get("generators/osu", { user, theme }).then(body => Buffer.from(body));
   }  
 
@@ -513,7 +499,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   sniper(avatar) {
-    if (!this.dev) throw new Error("Sniper endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/sniper", { avatar }).then(body => Buffer.from(body));
   }  
 
@@ -524,7 +510,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   changemymind(avatar, text) {
-    if (!this.dev) throw new Error("Change my mind endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/changemymind", { avatar, text }).then(body => Buffer.from(body));
   }  
 
@@ -534,7 +520,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   virtual(avatar) {
-    if (!this.dev) throw new Error("Virtual endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/vr", { avatar }).then(body => Buffer.from(body));
   }  
 
@@ -545,7 +531,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */ 
   kirby(avatar, text) {
-    if (!this.dev) throw new Error("Kirby School endpoint is disabled while in production");
+    avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/kirby", { avatar, text }).then(body => Buffer.from(body));
   }  
 
@@ -553,6 +539,24 @@ class IdioticClient {
 
   /**
    * 
+   * @param {string} type The type of message, welcome or farewell
+   * @param {string} version The version of greeting image you want to use
+   * @param {boolean} bot A boolean saying if the user is a bot or not
+   * @param {string} avatar Image you expect to be used
+   * @param {string} username The username you wish to display
+   * @param {string} discriminator The discriminator of the user
+   * @param {string} guildName The guild name for the image
+   * @param {number} memberCount The member count of the guild
+   * @param {string} message The message you want to include in your images (Not all versions support this.)
+   * @returns {Promise<Buffer>}
+   */
+  greeting(type, version, bot, avatar, username, discriminator, guildName, memberCount, message = "") {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("greetings/unified", { version, type, bot, avatar, username, discriminator, guildName, memberCount, message }).then(body => Buffer.from(body));
+  }
+
+  /**
+   * @deprecated Deprecated method. Please consider re-reading the updated documentation, and please use greeting instead.
    * @param {string} [version="gearz"] The type/version of greeting image you want to use
    * @param {boolean} [bot=false] A boolean saying if the user is a bot or not
    * @param {string} avatar Image you expect to be used
@@ -562,13 +566,14 @@ class IdioticClient {
    */
   welcome(version = "gearz", bot = false, avatar, usertag, guild) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? `greetings/${version}_welcome` : `${version}_welcome`, { bot, avatar, usertag, guild }).then(body => Buffer.from(body));
+    return this._get(`greetings/${version}_welcome`, { bot, avatar, usertag, guild }).then(body => Buffer.from(body));
   }
 
   /* Farewell endpoints */
 
   /**
    *
+   * @deprecated Deprecated method. Please consider re-reading the updated documentation, and please use greeting instead.
    * @param {string} [version="gearz"] The type/version of farewell image you want to use
    * @param {boolean} [bot=false] A boolean saying if the user is a bot or not
    * @param {string} avatar Image you expect to be used
@@ -577,7 +582,7 @@ class IdioticClient {
    */
   goodbye(version = "gearz", bot = false, avatar, usertag) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(this.dev ? `greetings/${version}_goodbye` : `${version}_goodbye`, { bot, avatar, usertag }).then(body => Buffer.from(body));
+    return this._get(`greetings/${version}_goodbye`, { bot, avatar, usertag }).then(body => Buffer.from(body));
   }
 
   /* Filter endpoints */
@@ -589,7 +594,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   brightness(avatar, brightness) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/brightness", { avatar, brightness }).then(body => Buffer.from(body));
   }
@@ -601,7 +605,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   darkness(avatar, darkness) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/darkness", { avatar, darkness }).then(body => Buffer.from(body));
   }
@@ -612,7 +615,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   greyscale(avatar) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/greyscale", { avatar }).then(body => Buffer.from(body));
   }
@@ -623,7 +625,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   invert(avatar) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/invert", { avatar }).then(body => Buffer.from(body));
   }
@@ -634,7 +635,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   iGrey(avatar) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/invertGreyscale", { avatar }).then(body => Buffer.from(body));
   }
@@ -646,7 +646,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   iThreshold(avatar, threshold) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/invertThreshold", { avatar, threshold }).then(body => Buffer.from(body));
   }
@@ -657,7 +656,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   sepia(avatar) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/sepia", { avatar }).then(body => Buffer.from(body));
   }
@@ -668,7 +666,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   silhouette(avatar) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/silhouette", { avatar }).then(body => Buffer.from(body));
   }
@@ -680,7 +677,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   threshold(avatar, threshold) {
-    if (!this.dev) throw new Error("Filter endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("effects/threshold", { avatar, threshold }).then(body => Buffer.from(body));
   }
@@ -693,7 +689,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   rainbow(avatar) {
-    if (!this.dev) throw new Error("Overlay endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("overlays/rainbow", { avatar }).then(body => Buffer.from(body));
   }
@@ -704,7 +699,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   approved(avatar) {
-    if (!this.dev) throw new Error("Overlay endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("overlays/approved", { avatar }).then(body => Buffer.from(body));
   }
@@ -715,7 +709,6 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   rejected(avatar) {
-    if (!this.dev) throw new Error("Overlay endpoint is disabled while in production");
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("overlays/rejected", { avatar }).then(body => Buffer.from(body));
   }
@@ -728,7 +721,6 @@ class IdioticClient {
    * @returns {string}
    */
   owoify(text) {
-    if (!this.dev) throw new Error("Owoify endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     return this._get("text/owoify", { text }).then(body => body.text);
   }
@@ -739,7 +731,6 @@ class IdioticClient {
    * @returns {string}
    */
   mock(text) {
-    if (!this.dev) throw new Error("Mock endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     return this._get("text/mock", { text }).then(body => body.text);
   }
@@ -751,7 +742,6 @@ class IdioticClient {
    * @returns {string}
    */
   tiny(text, style) {
-    if (!this.dev) throw new Error("Tiny endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     if (!tinyStyles.includes(style)) throw new TypeError("Style must be either tiny, superscript or subscript");
     return this._get("text/tinytext", { text, style }).then(body => body.text);
@@ -764,7 +754,6 @@ class IdioticClient {
    * @returns {string}
    */
   cursive(text, style) {
-    if (!this.dev) throw new Error("Cursive endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     if (!cursiveStyles.includes(style)) throw new TypeError("Style must be either normal or bold");
     return this._get("text/cursive", { text, style }).then(body => body.text);
@@ -776,7 +765,6 @@ class IdioticClient {
    * @returns {string}
    */
   vapor(text) {
-    if (!this.dev) throw new Error("Vapor endpoint is disabled while in production");
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     return this._get("text/vaporwave", { text }).then(body => body.text);
   }
@@ -789,13 +777,14 @@ class IdioticClient {
    * @private
    */
   _get(endpoint, query = {}) {
-    return snekfetch.get(`${this.baseUrl}${endpoint}`)
-      .set(this.dev ? "Authorization" : "token", this.token)
-      .query(query)
-      .then(res => {
-        if (res.status !== 200) throw res;
-        return res.body;
-      });
+    const qs = querystring.stringify(query);
+    return new Promise((resolve, reject) => {
+      fetch(`${this.baseUrl}${endpoint}?${qs}`, { headers: { [this.dev ? "Authorization" : "token"]: this.token } })
+        .then(res => {
+          if (res.status !== 200) return reject(res);
+          return resolve(res.json());
+        }).catch(err => reject(err));
+    });
   }
 
 }

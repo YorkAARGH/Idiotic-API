@@ -58,6 +58,7 @@ declare module "idiotic-api" {
         /* Greetings */
         public welcome(version?: string, bot?: boolean, avatar: string, usertag: string, guild: string): Promise<Buffer>;
         public goodbye(version?: string, bot?: boolean, avatar: string, usertag: string): Promise<Buffer>;
+        public greeting(type: string, version: string, bot: boolean, avatar: string, username: string, discriminator: string, guildName: string, memberCount: string, message: string): Promise<Buffer>;
         /* Effects */
         public brightness(avatar: string, brightness: number): Promise<Buffer>;
         public darkness(avatar: string, darkness: number): Promise<Buffer>;
