@@ -791,7 +791,7 @@ class IdioticClient {
    * @private
    */
   _get(endpoint, query = {}) {
-    return fetch(`${this.baseUrl}/${endpoint}?${querystring.stringify(query)}`, 
+    return fetch(`${this.baseUrl}${endpoint}?${querystring.stringify(query)}`, 
       { method: "GET",
         headers: this.headers,
       }).then(res => {
