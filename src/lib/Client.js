@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const querystring = require("querystring");
 const imageUrlRegex = /.webp$/g;
 const cursiveStyles = ["bold", "normal"];
 const tinyStyles = ["tiny", "superscript", "subscript"];
@@ -790,15 +791,12 @@ class IdioticClient {
    * @private
    */
   _get(endpoint, query = {}) {
-    const url = new URL(`${this.baseUrl}${endpoint}`);
-    Object.keys(query).forEach(key => url.searchParams.append(key, query[key]));
-
-    return fetch(url, 
+    return fetch(`${this.baseUrl}/${endpoint}?${querystring.stringify(query)}`, 
       { method: "GET",
         headers: this.headers,
       }).then(res => {
       if (res.status !== 200) throw res;
-      return res.body._outBuffer;
+      return res.json();
     });
   }
 
