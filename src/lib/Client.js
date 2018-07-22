@@ -1,4 +1,5 @@
-const snekfetch = require("snekfetch");
+const fetch = require("node-fetch");
+const querystring = require("querystring");
 const imageUrlRegex = /.webp$/g;
 const cursiveStyles = ["bold", "normal"];
 const tinyStyles = ["tiny", "superscript", "subscript"];
@@ -44,6 +45,7 @@ class IdioticClient {
      * @type {String}
      */
     this.baseUrl = options.url || this.dev ? "https://dev.anidiots.guide/" : "https://api.anidiots.guide/api/";
+    this.headers = { [`${this.dev ? "Authorization" : "token"}`]: token };
   }
 
   /* Text based endpoints */
@@ -789,13 +791,13 @@ class IdioticClient {
    * @private
    */
   _get(endpoint, query = {}) {
-    return snekfetch.get(`${this.baseUrl}${endpoint}`)
-      .set(this.dev ? "Authorization" : "token", this.token)
-      .query(query)
-      .then(res => {
-        if (res.status !== 200) throw res;
-        return res.body;
-      });
+    return fetch(`${this.baseUrl}${endpoint}?${querystring.stringify(query)}`, 
+      { method: "GET",
+        headers: this.headers,
+      }).then(res => {
+      if (res.status !== 200) throw res;
+      return res.json();
+    });
   }
 
 }
