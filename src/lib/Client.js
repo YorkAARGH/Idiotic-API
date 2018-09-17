@@ -126,7 +126,7 @@ class IdioticClient {
   /**
    * Missing endpoint
    * @param {string} avatar Image you except to be used
-   * @param {string} text text to except back
+   * @param {string} suggestion text to except back
    * @returns {Promise<Buffer>}
    */
   suggestion(avatar, suggestion) {
@@ -259,7 +259,7 @@ class IdioticClient {
   /**
    * HeavyFear endpoint
    * @param {string} avatar Image you expect to be used
-   * @returns {Promise<Buffer>} 
+   * @returns {Promise<Buffer>}
    */
   heavyFear(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
@@ -269,7 +269,7 @@ class IdioticClient {
   /**
    * WreckIt endpoint
    * @param {string} avatar Image you expect to be used
-   * @returns {Promise<Buffer>} 
+   * @returns {Promise<Buffer>}
    */
   wreckIt(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
@@ -279,7 +279,7 @@ class IdioticClient {
   /**
    * Painting endpoint
    * @param {string} avatar Image you expect to be used
-   * @returns {Promise<Buffer>} 
+   * @returns {Promise<Buffer>}
    */
   painting(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
@@ -327,12 +327,12 @@ class IdioticClient {
    * @param {string} puncher Image you expect to be used
    * @param {string} punched Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   superPunch(puncher, punched) {
     puncher = puncher.replace(imageUrlRegex, ".png");
     punched = punched.replace(imageUrlRegex, ".png");
     return this._get("generators/superpunch", { puncher, punched }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Crush endpoint
@@ -349,7 +349,7 @@ class IdioticClient {
   /**
    * Confused endpoint
    * @param {string} avatar Image you expect to be used
-   * @param {string} slapped Image you expect to be used
+   * @param {string} photo Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   confused(avatar, photo) {
@@ -363,39 +363,39 @@ class IdioticClient {
    * @param {string} spanker Image you expect to be used
    * @param {string} spanked Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   superSpank(spanker, spanked) {
     spanker = spanker.replace(imageUrlRegex, ".png");
     spanked = spanked.replace(imageUrlRegex, ".png");
     return this._get("generators/superspank", { spanker, spanked }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Tinder endpoint
    * @param {string} avatar Image you expect to be used
    * @param {string} match Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   tinderMatch(avatar, match) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     match = match.replace(imageUrlRegex, ".png");
     return this._get("generators/tinder", { avatar, match }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Colour endpoint
    * @param {string} colour Supply a colour code in any of these supported formats `hex`, `rgb`, `rgba`
    * @returns {Promise<Buffer>}
-   */ 
+   */
   colour(colour) {
     return this._get("generators/colour", { colour }).then(body => Buffer.from(body));
   }
-  
+
   /**
    * Color endpoint
-   * @param {String} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
+   * @param {string} color Supply a color code in any of these supported formats `hex`, `rgb`, `rgba`
    * @returns {Promise<Buffer>}
-   */ 
+   */
   color(...args) {
     return this.colour(...args);
   }
@@ -404,141 +404,141 @@ class IdioticClient {
    * Religion endpoint
    * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   religion(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/religion", { avatar }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Coffee endpoint
    * @param {string} text1 Supply the build up text
    * @param {string} text2 Supply the punch line text
    * @returns {Promise<Buffer>}
-   */ 
+   */
   coffee(text1, text2) {
     return this._get("generators/coffee", { text1, text2 }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Zero Two Picture endpoint
    * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   zerotwo(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/02picture", { avatar }).then(body => Buffer.from(body));
-  }  
+    return this._get("generators/zerotwopicture", { avatar }).then(body => Buffer.from(body));
+  }
 
   /**
    * Girls endpoint
    * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   girls(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/girls", { avatar }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Hates endpoint
    * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   hates(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/hates", { avatar }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Hide endpoint
    * @param {string} avatar Image you expect to be used
    * @param {string} target Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   hide(avatar, target) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     target = target.replace(imageUrlRegex, ".png");
     return this._get("generators/hide", { avatar, target }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Ignore endpoint
    * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   ignore(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/ignore", { avatar }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Time endpoint
    * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   time(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/time", { avatar }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * osu! endpoint
    * @param {string} user This is the osu! username.
    * @param {string} theme Select between 3 valid themes, light, dark and darker
    * @returns {Promise<Buffer>}
-   */ 
+   */
   osu(user, theme) {
     if (!osuThemes.includes(theme)) throw new TypeError("Theme must be either light, dark or darker");
     return this._get("generators/osu", { user, theme }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Sniper endpoint
    * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   sniper(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/sniper", { avatar }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Change my mind endpoint
    * @param {string} avatar Image you expect to be used
    * @param {string} text Supply the build up text
    * @returns {Promise<Buffer>}
-   */ 
+   */
   changemymind(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/changemymind", { avatar, text }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Virtual endpoint
    * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
-   */ 
+   */
   virtual(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/vr", { avatar }).then(body => Buffer.from(body));
-  }  
+  }
 
   /**
    * Kirby School endpoint
    * @param {string} avatar Image you expect to be used
    * @param {string} text Supply the build up text
    * @returns {Promise<Buffer>}
-   */ 
+   */
   kirby(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("generators/kirby", { avatar, text }).then(body => Buffer.from(body));
-  }  
+  }
 
   /* Greetings endpoints */
 
   /**
-   * 
+   *
    * @param {string} type The type of message, welcome or farewell
    * @param {string} version The version of greeting image you want to use
    * @param {boolean} bot A boolean saying if the user is a bot or not
@@ -550,39 +550,9 @@ class IdioticClient {
    * @param {string} message The message you want to include in your images (Not all versions support this.)
    * @returns {Promise<Buffer>}
    */
-  greeting(type, version, bot, avatar, username, discriminator, guildName, memberCount, message = "") {
+  welcomer(type, version, bot, avatar, username, discriminator, guildName, memberCount, message = "") {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("greetings/unified", { version, type, bot, avatar, username, discriminator, guildName, memberCount, message }).then(body => Buffer.from(body));
-  }
-
-  /**
-   * @deprecated Deprecated method. Please consider re-reading the updated documentation, and please use greeting instead.
-   * @param {string} [version="gearz"] The type/version of greeting image you want to use
-   * @param {boolean} [bot=false] A boolean saying if the user is a bot or not
-   * @param {string} avatar Image you expect to be used
-   * @param {string} usertag User's tag, format: username#discrim
-   * @param {string} guild guild name and guild member count seperated by #, format: guildname#memberCount
-   * @returns {Promise<Buffer>}
-   */
-  welcome(version = "gearz", bot = false, avatar, usertag, guild) {
-    avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(`greetings/${version}_welcome`, { bot, avatar, usertag, guild }).then(body => Buffer.from(body));
-  }
-
-  /* Farewell endpoints */
-
-  /**
-   *
-   * @deprecated Deprecated method. Please consider re-reading the updated documentation, and please use greeting instead.
-   * @param {string} [version="gearz"] The type/version of farewell image you want to use
-   * @param {boolean} [bot=false] A boolean saying if the user is a bot or not
-   * @param {string} avatar Image you expect to be used
-   * @param {string} usertag User's tag, format: username#discrim
-   * @returns {Promise<Buffer>}
-   */
-  goodbye(version = "gearz", bot = false, avatar, usertag) {
-    avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get(`greetings/${version}_goodbye`, { bot, avatar, usertag }).then(body => Buffer.from(body));
   }
 
   /* Filter endpoints */
@@ -767,6 +737,21 @@ class IdioticClient {
   vapor(text) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     return this._get("text/vaporwave", { text }).then(body => body.text);
+  }
+
+  /**
+	 * Profile endpoint
+   * @param {string} name The name you want to display
+   * @param {number} points The points you want to display
+   * @param {number} level The level you want to display
+   * @param {string} avatar The avatar you want to display
+   * @param {string} [theme] The theme you want to use
+   * @param {number} [expbar] The value you want to use to display on the exp bar
+   * @param {number} [remaining] The the value you want to display below the exp bar
+   * @returns {Promise<Buffer>}
+   */
+  profile(name, points, level, avatar, theme = "blurple", expbar, remaining) {
+    return this._get("profile/card", { name, points, level, avatar, theme, expbar, remaining }).then(body => Buffer.from(body));
   }
 
   /**

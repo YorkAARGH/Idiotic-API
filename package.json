@@ -21,7 +21,9 @@
     "url": "https://github.com/YorkAARGH/Idiotic-Wrapper/issues"
   },
   "homepage": "https://github.com/YorkAARGH/Idiotic-Wrapper#readme",
-  "dependencies": {},
+  "dependencies": {
+    "node-fetch": "^2.2.0"
+  },
   "devDependencies": {
     "@types/node": "^10.1.2",
     "eslint": "^4.19.1",
