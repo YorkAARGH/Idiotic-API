@@ -124,7 +124,7 @@ class IdioticClient {
   }
 
   /**
-   * Missing endpoint
+   * Suggestion endpoint
    * @param {string} avatar Image you except to be used
    * @param {string} suggestion text to except back
    * @returns {Promise<Buffer>}

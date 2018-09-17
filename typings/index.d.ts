@@ -35,6 +35,7 @@ declare module "idiotic-api" {
         public painting(avatar: string): Promise<Buffer>;
         public garbage(avatar: string): Promise<Buffer>;
         public batSlap(slapper: string, slapped: string): Promise<Buffer>;
+        public fanSlap(slapper: string, slapped: string): Promise<Buffer>;
         public superPunch(puncher: string, punched: string): Promise<Buffer>;
         public crush(crusher: string, crush: string): Promise<Buffer>;
         public confused(avatar: string, photo: string): Promise<Buffer>;
@@ -56,9 +57,7 @@ declare module "idiotic-api" {
         public virtual(avatar: string): Promise<Buffer>;
         public kirby(avatar: string, text: string): Promise<Buffer>;
         /* Greetings */
-        public welcome(version?: string, bot?: boolean, avatar: string, usertag: string, guild: string): Promise<Buffer>;
-        public goodbye(version?: string, bot?: boolean, avatar: string, usertag: string): Promise<Buffer>;
-        public greeting(type: string, version: string, bot: boolean, avatar: string, username: string, discriminator: string, guildName: string, memberCount: string, message: string): Promise<Buffer>;
+        public welcomer(type: string, version: string, bot: boolean, avatar: string, username: string, discriminator: string, guildName: string, memberCount: string, message: string): Promise<Buffer>;
         /* Effects */
         public brightness(avatar: string, brightness: number): Promise<Buffer>;
         public darkness(avatar: string, darkness: number): Promise<Buffer>;
@@ -79,6 +78,8 @@ declare module "idiotic-api" {
         public tiny(text: string, style: tinyStyle): Promise<string>;
         public cursive(text: string, style: cursiveStyle): Promise<string>;
         public vapor(text: string): Promise<string>;
+        /* Profile */
+        public profile(name: string, points: number, level: number, avatar: string, theme?: string, expbar?: number, remaining?: number): Promise<Buffer>;
         /* Private */
         public _get(endpoint: string, query?: { [key: string]: string }): Promise<any>;
     }
