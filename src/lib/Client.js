@@ -4,6 +4,7 @@ const imageUrlRegex = /.webp$/g;
 const cursiveStyles = ["bold", "normal"];
 const tinyStyles = ["tiny", "superscript", "subscript"];
 const osuThemes = ["light", "dark", "darker"];
+const discordHouses = ["bravery", "balance", "brilliance"];
 
 /**
  * Client for Idiotic-api Wrapper
@@ -661,6 +662,18 @@ class IdioticClient {
   rainbow(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("overlays/rainbow", { avatar }).then(body => Buffer.from(body));
+  }
+
+  /**
+   * Discord House endpoint
+   * @param {string} avatar Image you expect to be used
+   * @param {string} house The discord house icon and colour scheme you want for your overlay
+   * @returns {Promise<Buffer>}
+   */
+  discordHouse(avatar, house) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    if (!discordHouses.includes(house)) throw new TypeError("House must be either bravery, balance or brilliance");
+    return this._get("overlays/discord", { avatar, house }).then(body => Buffer.from(body));
   }
 
   /**
