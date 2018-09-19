@@ -776,13 +776,10 @@ class IdioticClient {
    */
   _get(endpoint, query = {}) {
     const qs = querystring.stringify(query);
-    return new Promise((resolve, reject) => {
-      fetch(`${this.baseUrl}${endpoint}?${qs}`, { headers: { [this.dev ? "Authorization" : "token"]: this.token } })
-        .then(res => {
-          if (res.status !== 200) return reject(res);
-          return resolve(res.json());
-        }).catch(err => reject(err));
-    });
+    fetch(`${this.baseUrl}${endpoint}?${qs}`, { headers: { [this.dev ? "Authorization" : "token"]: this.token } })
+      .then(res => {
+        if (res.status !== 200) return console.log(`API Error ${res.status}: ${res.body}`);
+      }).catch(err => console.log(err));
   }
 
 }
