@@ -53,7 +53,7 @@ class IdioticClient {
 
   /**
    * Blame endpoint
-   * @param {string} name text to except back
+   * @param {string} name text to expect back
    * @returns {Promise<Buffer>}
    */
   blame(name) {
@@ -62,7 +62,7 @@ class IdioticClient {
 
   /**
    * Pls endpoint
-   * @param {string} name text to except back
+   * @param {string} name text to expect back
    * @returns {Promise<Buffer>}
    */
   pls(name) {
@@ -71,7 +71,7 @@ class IdioticClient {
 
   /**
    * Snapchat endpoint
-   * @param {string} text text to except back
+   * @param {string} text text to expect back
    * @returns {Promise<Buffer>}
    */
   snapchat(text) {
@@ -82,8 +82,8 @@ class IdioticClient {
 
   /**
    * Achievement endpoint
-   * @param {string} avatar Image you except to be used
-   * @param {string} text text to except back
+   * @param {string} avatar Image you expect to be used
+   * @param {string} text text to expect back
    * @returns {Promise<Buffer>}
    */
   achievement(avatar, text) {
@@ -93,8 +93,8 @@ class IdioticClient {
 
   /**
    * TheSearch endpoint
-   * @param {string} avatar Image you except to be used
-   * @param {string} text text to except back
+   * @param {string} avatar Image you expect to be used
+   * @param {string} text text to expect back
    * @returns {Promise<Buffer>}
    */
   theSearch(avatar, text) {
@@ -104,8 +104,8 @@ class IdioticClient {
 
   /**
    * Missing endpoint
-   * @param {string} avatar Image you except to be used
-   * @param {string} text text to except back
+   * @param {string} avatar Image you expect to be used
+   * @param {string} text text to expect back
    * @returns {Promise<Buffer>}
    */
   missing(avatar, text) {
@@ -115,8 +115,8 @@ class IdioticClient {
 
   /**
    * Steam endpoint
-   * @param {string} avatar Image you except to be used
-   * @param {string} text text to except back
+   * @param {string} avatar Image you expect to be used
+   * @param {string} text text to expect back
    * @returns {Promise<Buffer>}
    */
   steam(avatar, text) {
@@ -126,8 +126,8 @@ class IdioticClient {
 
   /**
    * Suggestion endpoint
-   * @param {string} avatar Image you except to be used
-   * @param {string} suggestion text to except back
+   * @param {string} avatar Image you expect to be used
+   * @param {string} suggestion text to expect back
    * @returns {Promise<Buffer>}
    */
   suggestion(avatar, suggestion) {
@@ -139,7 +139,7 @@ class IdioticClient {
 
   /**
    * Beautiful endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   beautiful(avatar) {
@@ -149,7 +149,7 @@ class IdioticClient {
 
   /**
    * Facepalm endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   facepalm(avatar) {
@@ -159,7 +159,7 @@ class IdioticClient {
 
   /**
    * Respect endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   respect(avatar) {
@@ -169,7 +169,7 @@ class IdioticClient {
 
   /**
    * Stepped endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   stepped(avatar) {
@@ -179,7 +179,7 @@ class IdioticClient {
 
   /**
    * Tattoo endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   tattoo(avatar) {
@@ -189,7 +189,7 @@ class IdioticClient {
 
   /**
    * Triggered endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   triggered(avatar) {
@@ -199,7 +199,7 @@ class IdioticClient {
 
   /**
    * VaultBoy endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   vaultBoy(avatar) {
@@ -209,7 +209,7 @@ class IdioticClient {
 
   /**
    * Wanted endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   wanted(avatar) {
@@ -219,7 +219,7 @@ class IdioticClient {
 
   /**
    * Karen endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   karen(avatar) {
@@ -229,7 +229,7 @@ class IdioticClient {
 
   /**
    * Challenger endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   challenger(avatar) {
@@ -239,7 +239,7 @@ class IdioticClient {
 
   /**
    * Bobross endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   bobRoss(avatar) {
@@ -249,7 +249,7 @@ class IdioticClient {
 
   /**
    * WaifuInsult endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   waifuInsult(avatar) {
@@ -289,7 +289,7 @@ class IdioticClient {
 
   /**
    * Garbage endpoint
-   * @param {string} avatar Image you except to be used
+   * @param {string} avatar Image you expect to be used
    * @returns {Promise<Buffer>}
    */
   garbage(avatar) {
@@ -768,7 +768,7 @@ class IdioticClient {
   }
 
   /**
-   * A private method used to get endpoints with querys
+   * A private method used to get endpoints with queries
    * @param {string} endpoint endpoint string
    * @param {Object} [query={}] query object
    * @returns {Promise<any>}
