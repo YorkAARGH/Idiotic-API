@@ -53,7 +53,7 @@ class IdioticClient {
 
   /**
    * Blame endpoint
-   * @param {string} name text to expect back
+   * @param {string} name The name you want to blame
    * @returns {Promise<Buffer>}
    */
   blame(name) {
@@ -62,7 +62,7 @@ class IdioticClient {
 
   /**
    * Pls endpoint
-   * @param {string} name text to expect back
+   * @param {string} name The name you want to beg
    * @returns {Promise<Buffer>}
    */
   pls(name) {
@@ -71,19 +71,29 @@ class IdioticClient {
 
   /**
    * Snapchat endpoint
-   * @param {string} text text to expect back
+   * @param {string} text The text you want to display
    * @returns {Promise<Buffer>}
    */
   snapchat(text) {
     return this._get("generators/snapchat", { text }).then(body => Buffer.from(body));
   }
 
+  /**
+   * Aliens endpoint
+   * @param {string} top The text you want to display
+   * @param {string} bottom The text you want to display
+   * @returns {Promise<Buffer>}
+   */
+  aliens(top, bottom) {
+    return this._get("generators/aliens", { top, bottom }).then(body => Buffer.from(body));
+  }
+
   /* Image and Text endpoints */
 
   /**
    * Achievement endpoint
-   * @param {string} avatar Image you expect to be used
-   * @param {string} text text to expect back
+   * @param {string} avatar Image you except to be used
+   * @param {string} text The text you want to display
    * @returns {Promise<Buffer>}
    */
   achievement(avatar, text) {
@@ -93,8 +103,8 @@ class IdioticClient {
 
   /**
    * TheSearch endpoint
-   * @param {string} avatar Image you expect to be used
-   * @param {string} text text to expect back
+   * @param {string} avatar Image you except to be used
+   * @param {string} text The text you want to display
    * @returns {Promise<Buffer>}
    */
   theSearch(avatar, text) {
@@ -104,8 +114,8 @@ class IdioticClient {
 
   /**
    * Missing endpoint
-   * @param {string} avatar Image you expect to be used
-   * @param {string} text text to expect back
+   * @param {string} avatar Image you except to be used
+   * @param {string} text The text you want to display
    * @returns {Promise<Buffer>}
    */
   missing(avatar, text) {
@@ -115,8 +125,8 @@ class IdioticClient {
 
   /**
    * Steam endpoint
-   * @param {string} avatar Image you expect to be used
-   * @param {string} text text to expect back
+   * @param {string} avatar Image you except to be used
+   * @param {string} text The text you want to display
    * @returns {Promise<Buffer>}
    */
   steam(avatar, text) {
@@ -126,8 +136,8 @@ class IdioticClient {
 
   /**
    * Suggestion endpoint
-   * @param {string} avatar Image you expect to be used
-   * @param {string} suggestion text to expect back
+   * @param {string} avatar Image you except to be used
+   * @param {string} suggestion The text you want to display
    * @returns {Promise<Buffer>}
    */
   suggestion(avatar, suggestion) {

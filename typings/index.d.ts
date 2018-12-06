@@ -13,6 +13,7 @@ declare module "idiotic-api" {
         public blame(name: string): Promise<Buffer>;
         public pls(name: string): Promise<Buffer>;
         public snapchat(text: string): Promise<Buffer>;
+        public aliens(top: string, bottom: string): Promise<Buffer>;
         public achievement(avatar: string, text: string): Promise<Buffer>;
         public theSearch(avatar: string, text: string): Promise<Buffer>;
         public missing(avatar: string, text: string): Promise<Buffer>;
@@ -79,6 +80,9 @@ declare module "idiotic-api" {
         public tiny(text: string, style: tinyStyle): Promise<string>;
         public cursive(text: string, style: cursiveStyle): Promise<string>;
         public vapor(text: string): Promise<string>;
+        public medieval(text: string): Promise<string>;
+        public outline(text: string): Promise<string>;
+        public square(text: string): Promise<string>;
         /* Profile */
         public profile(name: string, points: number, level: number, avatar: string, theme?: string, expbar?: number, remaining?: number): Promise<Buffer>;
         /* Private */
@@ -96,4 +100,6 @@ declare module "idiotic-api" {
     export type tinyStyle = "tiny" | "superscript" | "subscript";
     export type cursiveStyle = "bold" | "normal";
     export type osuTheme = "light" | "dark" | "darker";
+    export type discordHouses = ["bravery", "balance", "brilliance"];
+
 }
