@@ -774,15 +774,12 @@ class IdioticClient {
    * @returns {Promise<any>}
    * @private
    */
-  _get(endpoint, query = {}) {
+  async _get(endpoint, query = {}) {
     const qs = querystring.stringify(query);
-    return fetch(`${this.baseUrl}${endpoint}?${qs}`, { headers: { [this.dev ? "Authorization" : "token"]: this.token } })
-      .then(res => {
-        if (res.status !== 200) return console.log(`API Error ${res.status}: ${res.body}`);
-        return res.buffer();
-      }).catch(err => console.log(err));
+    const res = await fetch(`${this.baseUrl}${endpoint}?${qs}`, { headers: { [this.dev ? "Authorization" : "token"]: this.token } });
+    if (res.status !== 200) throw new Error(`Idiotic API Error ${res.status}: ${res.body}`);
+    return await res.buffer();
   }
-
 }
 
 module.exports = IdioticClient;
