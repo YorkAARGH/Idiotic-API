@@ -552,17 +552,7 @@ class IdioticClient {
    */
   welcomer(type, version, bot, avatar, username, discriminator, guildName, memberCount, message = "") {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("greetings/unified", {
-      version,
-      type,
-      bot,
-      avatar,
-      username,
-      discriminator,
-      guildName,
-      memberCount,
-      message
-    }).then(body => Buffer.from(body));
+    return this._get("greetings/unified", { version, type, bot, avatar, username, discriminator, guildName, memberCount, message }).then(body => Buffer.from(body));
   }
 
   /* Filter endpoints */
@@ -773,15 +763,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   profile(name, points, level, avatar, theme = "blurple", expbar, remaining) {
-    return this._get("profile/card", {
-      name,
-      points,
-      level,
-      avatar,
-      theme,
-      expbar,
-      remaining
-    }).then(body => Buffer.from(body));
+    return this._get("profile/card", { name, points, level, avatar, theme, expbar, remaining }).then(body => Buffer.from(body));
   }
 
   /**
