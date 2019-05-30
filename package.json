@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/YorkAARGH/Idiotic-Wrapper#readme",
   "dependencies": {
-    "node-fetch": "^2.2.0"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/node": "^10.1.2",

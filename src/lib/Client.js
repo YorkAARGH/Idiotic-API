@@ -1,5 +1,4 @@
 const fetch = require("node-fetch");
-const querystring = require("querystring");
 const imageUrlRegex = /.webp$/g;
 const cursiveStyles = ["bold", "normal"];
 const tinyStyles = ["tiny", "superscript", "subscript"];
@@ -553,7 +552,17 @@ class IdioticClient {
    */
   welcomer(type, version, bot, avatar, username, discriminator, guildName, memberCount, message = "") {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("greetings/unified", { version, type, bot, avatar, username, discriminator, guildName, memberCount, message }).then(body => Buffer.from(body));
+    return this._get("greetings/unified", {
+      version,
+      type,
+      bot,
+      avatar,
+      username,
+      discriminator,
+      guildName,
+      memberCount,
+      message
+    }).then(body => Buffer.from(body));
   }
 
   /* Filter endpoints */
@@ -753,7 +762,7 @@ class IdioticClient {
   }
 
   /**
-	 * Profile endpoint
+   * Profile endpoint
    * @param {string} name The name you want to display
    * @param {number} points The points you want to display
    * @param {number} level The level you want to display
@@ -764,7 +773,15 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   profile(name, points, level, avatar, theme = "blurple", expbar, remaining) {
-    return this._get("profile/card", { name, points, level, avatar, theme, expbar, remaining }).then(body => Buffer.from(body));
+    return this._get("profile/card", {
+      name,
+      points,
+      level,
+      avatar,
+      theme,
+      expbar,
+      remaining
+    }).then(body => Buffer.from(body));
   }
 
   /**
@@ -774,12 +791,17 @@ class IdioticClient {
    * @returns {Promise<any>}
    * @private
    */
-  async _get(endpoint, query = {}) {
-    const qs = querystring.stringify(query);
-    const res = await fetch(`${this.baseUrl}${endpoint}?${qs}`, { headers: { [this.dev ? "Authorization" : "token"]: this.token } });
-    if (res.status !== 200) throw new Error(`Idiotic API Error ${res.status}: ${res.body}`);
-    return await res.buffer();
+  _get(endpoint, query = {}) {
+    const url = new URL(this.baseUrl + endpoint);
+    url.search = new URLSearchParams(query);
+    return fetch(url.toString(), { headers: { [this.dev ? "Authorization" : "token"]: this.token } })
+      .then((res, error) => {
+        if (error) throw error;
+        if (res.status !== 200) throw new Error(`API Error ${res.status}: ${res.body}`);
+        return res.json();
+      });
   }
+
 }
 
 module.exports = IdioticClient;
