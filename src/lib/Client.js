@@ -674,6 +674,17 @@ class IdioticClient {
   }
 
   /**
+   * Pride endpoint
+   * @param {string} avatar Image you expect to be used
+   * @param {pride} string Could be one of the FF. agender, aromantic, asexual, bisexual, genderfluid, genderqueer, intersex, lesbian, lgbtq, nonbinary, pansexual, polysexual, straight, straightally, trans
+   * @returns {Promise<Buffer>}
+   */
+  pride(avatar, pride) {
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("/overlays/pride", { avatar, pride }).then(body => Buffer.from(body));
+  }
+
+  /**
    * Discord House endpoint
    * @param {string} avatar Image you expect to be used
    * @param {string} house The discord house icon and colour scheme you want for your overlay
