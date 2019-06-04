@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const AbortController = require("abort-controller");
 const imageUrlRegex = /.webp$/g;
 const cursiveStyles = ["bold", "normal"];
 const tinyStyles = ["tiny", "superscript", "subscript"];
@@ -56,7 +57,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   blame(name) {
-    return this._get("generators/blame", { name }).then(body => Buffer.from(body));
+    return this._get("generators/blame", { name }).then(res => res.buffer());
   }
 
   /**
@@ -65,7 +66,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   pls(name) {
-    return this._get("generators/pls", { name }).then(body => Buffer.from(body));
+    return this._get("generators/pls", { name }).then(res => res.buffer());
   }
 
   /**
@@ -74,7 +75,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   snapchat(text) {
-    return this._get("generators/snapchat", { text }).then(body => Buffer.from(body));
+    return this._get("generators/snapchat", { text }).then(res => res.buffer());
   }
 
   /* Image and Text endpoints */
@@ -87,7 +88,7 @@ class IdioticClient {
    */
   achievement(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/achievement", { avatar, text }).then(body => Buffer.from(body));
+    return this._get("generators/achievement", { avatar, text }).then(res => res.buffer());
   }
 
   /**
@@ -98,7 +99,7 @@ class IdioticClient {
    */
   theSearch(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/thesearch", { avatar, text }).then(body => Buffer.from(body));
+    return this._get("generators/thesearch", { avatar, text }).then(res => res.buffer());
   }
 
   /**
@@ -109,7 +110,7 @@ class IdioticClient {
    */
   missing(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/missing", { avatar, text }).then(body => Buffer.from(body));
+    return this._get("generators/missing", { avatar, text }).then(res => res.buffer());
   }
 
   /**
@@ -120,7 +121,7 @@ class IdioticClient {
    */
   steam(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/steam", { avatar, text }).then(body => Buffer.from(body));
+    return this._get("generators/steam", { avatar, text }).then(res => res.buffer());
   }
 
   /**
@@ -131,7 +132,7 @@ class IdioticClient {
    */
   suggestion(avatar, suggestion) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/suggestion", { avatar, suggestion }).then(body => Buffer.from(body));
+    return this._get("generators/suggestion", { avatar, suggestion }).then(res => res.buffer());
   }
 
   /* Single Image endpoints */
@@ -143,7 +144,7 @@ class IdioticClient {
    */
   beautiful(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/beautiful", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/beautiful", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -153,7 +154,7 @@ class IdioticClient {
    */
   facepalm(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/facepalm", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/facepalm", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -163,7 +164,7 @@ class IdioticClient {
    */
   respect(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/respect", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/respect", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -173,7 +174,7 @@ class IdioticClient {
    */
   stepped(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/stepped", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/stepped", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -183,7 +184,7 @@ class IdioticClient {
    */
   tattoo(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/tattoo", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/tattoo", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -193,7 +194,7 @@ class IdioticClient {
    */
   triggered(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/triggered", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/triggered", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -203,7 +204,7 @@ class IdioticClient {
    */
   vaultBoy(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/vault", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/vault", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -213,7 +214,7 @@ class IdioticClient {
    */
   wanted(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/wanted", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/wanted", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -223,7 +224,7 @@ class IdioticClient {
    */
   karen(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/karen", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/karen", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -233,7 +234,7 @@ class IdioticClient {
    */
   challenger(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/challenger", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/challenger", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -243,7 +244,7 @@ class IdioticClient {
    */
   bobRoss(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/bobross", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/bobross", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -253,7 +254,7 @@ class IdioticClient {
    */
   waifuInsult(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/waifuinsult", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/waifuinsult", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -263,7 +264,7 @@ class IdioticClient {
    */
   heavyFear(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/heavyfear", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/heavyfear", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -273,7 +274,7 @@ class IdioticClient {
    */
   wreckIt(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/wreckit", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/wreckit", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -283,7 +284,7 @@ class IdioticClient {
    */
   painting(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/painting", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/painting", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -293,7 +294,7 @@ class IdioticClient {
    */
   garbage(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/garbage", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/garbage", { avatar }).then(res => res.buffer());
   }
 
   /* Double Image endpoints */
@@ -307,7 +308,7 @@ class IdioticClient {
   batSlap(slapper, slapped) {
     slapper = slapper.replace(imageUrlRegex, ".png");
     slapped = slapped.replace(imageUrlRegex, ".png");
-    return this._get("generators/batslap", { slapper, slapped }).then(body => Buffer.from(body));
+    return this._get("generators/batslap", { slapper, slapped }).then(res => res.buffer());
   }
 
   /**
@@ -319,7 +320,7 @@ class IdioticClient {
   fanSlap(slapper, slapped) {
     slapper = slapper.replace(imageUrlRegex, ".png");
     slapped = slapped.replace(imageUrlRegex, ".png");
-    return this._get("generators/fanslap", { slapper, slapped }).then(body => Buffer.from(body));
+    return this._get("generators/fanslap", { slapper, slapped }).then(res => res.buffer());
   }
 
   /**
@@ -331,7 +332,7 @@ class IdioticClient {
   superPunch(puncher, punched) {
     puncher = puncher.replace(imageUrlRegex, ".png");
     punched = punched.replace(imageUrlRegex, ".png");
-    return this._get("generators/superpunch", { puncher, punched }).then(body => Buffer.from(body));
+    return this._get("generators/superpunch", { puncher, punched }).then(res => res.buffer());
   }
 
   /**
@@ -343,7 +344,7 @@ class IdioticClient {
   crush(crusher, crush) {
     crusher = crusher.replace(imageUrlRegex, ".png");
     crush = crush.replace(imageUrlRegex, ".png");
-    return this._get("generators/crush", { crusher, crush }).then(body => Buffer.from(body));
+    return this._get("generators/crush", { crusher, crush }).then(res => res.buffer());
   }
 
   /**
@@ -355,7 +356,7 @@ class IdioticClient {
   confused(avatar, photo) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     photo = photo.replace(imageUrlRegex, ".png");
-    return this._get("generators/confused", { avatar, photo }).then(body => Buffer.from(body));
+    return this._get("generators/confused", { avatar, photo }).then(res => res.buffer());
   }
 
   /**
@@ -367,7 +368,7 @@ class IdioticClient {
   superSpank(spanker, spanked) {
     spanker = spanker.replace(imageUrlRegex, ".png");
     spanked = spanked.replace(imageUrlRegex, ".png");
-    return this._get("generators/superspank", { spanker, spanked }).then(body => Buffer.from(body));
+    return this._get("generators/superspank", { spanker, spanked }).then(res => res.buffer());
   }
 
   /**
@@ -379,7 +380,7 @@ class IdioticClient {
   tinderMatch(avatar, match) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     match = match.replace(imageUrlRegex, ".png");
-    return this._get("generators/tinder", { avatar, match }).then(body => Buffer.from(body));
+    return this._get("generators/tinder", { avatar, match }).then(res => res.buffer());
   }
 
   /**
@@ -388,7 +389,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   colour(colour) {
-    return this._get("generators/colour", { colour }).then(body => Buffer.from(body));
+    return this._get("generators/colour", { colour }).then(res => res.buffer());
   }
 
   /**
@@ -407,7 +408,7 @@ class IdioticClient {
    */
   religion(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/religion", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/religion", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -417,7 +418,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   coffee(text1, text2) {
-    return this._get("generators/coffee", { text1, text2 }).then(body => Buffer.from(body));
+    return this._get("generators/coffee", { text1, text2 }).then(res => res.buffer());
   }
 
   /**
@@ -427,7 +428,7 @@ class IdioticClient {
    */
   zerotwo(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/zerotwopicture", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/zerotwopicture", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -437,7 +438,7 @@ class IdioticClient {
    */
   girls(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/girls", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/girls", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -447,7 +448,7 @@ class IdioticClient {
    */
   hates(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/hates", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/hates", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -459,7 +460,7 @@ class IdioticClient {
   hide(avatar, target) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     target = target.replace(imageUrlRegex, ".png");
-    return this._get("generators/hide", { avatar, target }).then(body => Buffer.from(body));
+    return this._get("generators/hide", { avatar, target }).then(res => res.buffer());
   }
 
   /**
@@ -469,7 +470,7 @@ class IdioticClient {
    */
   ignore(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/ignore", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/ignore", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -479,7 +480,7 @@ class IdioticClient {
    */
   time(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/time", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/time", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -490,7 +491,7 @@ class IdioticClient {
    */
   osu(user, theme) {
     if (!osuThemes.includes(theme)) throw new TypeError("Theme must be either light, dark or darker");
-    return this._get("generators/osu", { user, theme }).then(body => Buffer.from(body));
+    return this._get("generators/osu", { user, theme }).then(res => res.buffer());
   }
 
   /**
@@ -500,7 +501,7 @@ class IdioticClient {
    */
   sniper(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/sniper", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/sniper", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -511,7 +512,7 @@ class IdioticClient {
    */
   changemymind(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/changemymind", { avatar, text }).then(body => Buffer.from(body));
+    return this._get("generators/changemymind", { avatar, text }).then(res => res.buffer());
   }
 
   /**
@@ -521,7 +522,7 @@ class IdioticClient {
    */
   virtual(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/vr", { avatar }).then(body => Buffer.from(body));
+    return this._get("generators/vr", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -532,7 +533,7 @@ class IdioticClient {
    */
   kirby(avatar, text) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("generators/kirby", { avatar, text }).then(body => Buffer.from(body));
+    return this._get("generators/kirby", { avatar, text }).then(res => res.buffer());
   }
 
   /* Greetings endpoints */
@@ -552,7 +553,7 @@ class IdioticClient {
    */
   welcomer(type, version, bot, avatar, username, discriminator, guildName, memberCount, message = "") {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("greetings/unified", { version, type, bot, avatar, username, discriminator, guildName, memberCount, message }).then(body => Buffer.from(body));
+    return this._get("greetings/unified", { version, type, bot, avatar, username, discriminator, guildName, memberCount, message }).then(res => res.buffer());
   }
 
   /* Filter endpoints */
@@ -565,7 +566,7 @@ class IdioticClient {
    */
   brightness(avatar, brightness) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/brightness", { avatar, brightness }).then(body => Buffer.from(body));
+    return this._get("effects/brightness", { avatar, brightness }).then(res => res.buffer());
   }
 
   /**
@@ -576,7 +577,7 @@ class IdioticClient {
    */
   darkness(avatar, darkness) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/darkness", { avatar, darkness }).then(body => Buffer.from(body));
+    return this._get("effects/darkness", { avatar, darkness }).then(res => res.buffer());
   }
 
   /**
@@ -586,7 +587,7 @@ class IdioticClient {
    */
   greyscale(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/greyscale", { avatar }).then(body => Buffer.from(body));
+    return this._get("effects/greyscale", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -596,7 +597,7 @@ class IdioticClient {
    */
   invert(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/invert", { avatar }).then(body => Buffer.from(body));
+    return this._get("effects/invert", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -606,7 +607,7 @@ class IdioticClient {
    */
   iGrey(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/invertGreyscale", { avatar }).then(body => Buffer.from(body));
+    return this._get("effects/invertGreyscale", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -617,7 +618,7 @@ class IdioticClient {
    */
   iThreshold(avatar, threshold) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/invertThreshold", { avatar, threshold }).then(body => Buffer.from(body));
+    return this._get("effects/invertThreshold", { avatar, threshold }).then(res => res.buffer());
   }
 
   /**
@@ -627,7 +628,7 @@ class IdioticClient {
    */
   sepia(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/sepia", { avatar }).then(body => Buffer.from(body));
+    return this._get("effects/sepia", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -637,7 +638,7 @@ class IdioticClient {
    */
   silhouette(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/silhouette", { avatar }).then(body => Buffer.from(body));
+    return this._get("effects/silhouette", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -648,7 +649,7 @@ class IdioticClient {
    */
   threshold(avatar, threshold) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("effects/threshold", { avatar, threshold }).then(body => Buffer.from(body));
+    return this._get("effects/threshold", { avatar, threshold }).then(res => res.buffer());
   }
 
   /* Overlays */
@@ -660,7 +661,7 @@ class IdioticClient {
    */
   rainbow(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("overlays/rainbow", { avatar }).then(body => Buffer.from(body));
+    return this._get("overlays/rainbow", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -671,7 +672,7 @@ class IdioticClient {
    */
   pride(avatar, pride) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("/overlays/pride", { avatar, pride }).then(body => Buffer.from(body));
+    return this._get("/overlays/pride", { avatar, pride }).then(res => res.buffer());
   }
 
   /**
@@ -683,7 +684,7 @@ class IdioticClient {
   discordHouse(avatar, house) {
     avatar = avatar.replace(imageUrlRegex, ".png");
     if (!discordHouses.includes(house)) throw new TypeError("House must be either bravery, balance or brilliance");
-    return this._get("overlays/discord", { avatar, house }).then(body => Buffer.from(body));
+    return this._get("overlays/discord", { avatar, house }).then(res => res.buffer());
   }
 
   /**
@@ -693,7 +694,7 @@ class IdioticClient {
    */
   approved(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("overlays/approved", { avatar }).then(body => Buffer.from(body));
+    return this._get("overlays/approved", { avatar }).then(res => res.buffer());
   }
 
   /**
@@ -703,7 +704,7 @@ class IdioticClient {
    */
   rejected(avatar) {
     avatar = avatar.replace(imageUrlRegex, ".png");
-    return this._get("overlays/rejected", { avatar }).then(body => Buffer.from(body));
+    return this._get("overlays/rejected", { avatar }).then(res => res.buffer());
   }
 
   /* Text */
@@ -713,9 +714,9 @@ class IdioticClient {
    * @param {string} text The text you want to alter
    * @returns {string}
    */
-  owoify(text) {
+  async owoify(text) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    return this._get("text/owoify", { text }).then(body => body.text);
+    return this._get("text/owoify", { text }).then(body => body.json().then((body) => body.text));
   }
 
   /**
@@ -725,7 +726,7 @@ class IdioticClient {
    */
   mock(text) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    return this._get("text/mock", { text }).then(body => body.text);
+    return this._get("text/mock", { text }).then(body => body.json().then((body) => body.text));
   }
 
   /**
@@ -737,7 +738,7 @@ class IdioticClient {
   tiny(text, style) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     if (!tinyStyles.includes(style)) throw new TypeError("Style must be either tiny, superscript or subscript");
-    return this._get("text/tinytext", { text, style }).then(body => body.text);
+    return this._get("text/tinytext", { text, style }).then(body => body.json().then((body) => body.text));
   }
 
   /**
@@ -749,7 +750,7 @@ class IdioticClient {
   cursive(text, style) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     if (!cursiveStyles.includes(style)) throw new TypeError("Style must be either normal or bold");
-    return this._get("text/cursive", { text, style }).then(body => body.text);
+    return this._get("text/cursive", { text, style }).then(body => body.json().then((body) => body.text));
   }
 
   /**
@@ -759,7 +760,7 @@ class IdioticClient {
    */
   vapor(text) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    return this._get("text/vaporwave", { text }).then(body => body.text);
+    return this._get("text/vaporwave", { text }).then(body => body.json().then((body) => body.text));
   }
 
   /**
@@ -774,7 +775,7 @@ class IdioticClient {
    * @returns {Promise<Buffer>}
    */
   profile(name, points, level, avatar, theme = "blurple", expbar, remaining) {
-    return this._get("profile/card", { name, points, level, avatar, theme, expbar, remaining }).then(body => Buffer.from(body));
+    return this._get("profile/card", { name, points, level, avatar, theme, expbar, remaining }).then(res => res.buffer());
   }
 
   /**
@@ -787,10 +788,17 @@ class IdioticClient {
   _get(endpoint, query = {}) {
     const url = new URL(this.baseUrl + endpoint);
     url.search = new URLSearchParams(query);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
     return fetch(url.toString(), { headers: { [this.dev ? "Authorization" : "token"]: this.token } })
       .then((res) => {
-        if (res.status !== 200) throw new Error(`API Error ${res.status}: ${res.body}`);
-        return res.json();
+        clearTimeout(timeout);
+        if (res.status !== 200) throw new Error(`IDIOTIC_API_ERROR: Status Code ${res.status}`);
+        return res;
+      }, (error) => {
+        clearTimeout(timeout);
+        if (error.name === "AbortError") error = new Error("IDIOTIC_API_TIMEOUT: Request did not complete in 15s");
+        throw error;
       });
   }
 }
