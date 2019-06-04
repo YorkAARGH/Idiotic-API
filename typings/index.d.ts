@@ -70,6 +70,7 @@ declare module "idiotic-api" {
         public threshold(avatar: string, threshold: number): Promise<Buffer>;
         /* Overlays */
         public rainbow(avatar: string): Promise<Buffer>;
+        public pride(avatar: string, pride: string): Promise<Buffer>;
         public approved(avatar: string): Promise<Buffer>;
         public rejected(avatar: string): Promise<Buffer>;
         /* Text */
