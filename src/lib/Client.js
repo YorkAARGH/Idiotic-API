@@ -788,13 +788,11 @@ class IdioticClient {
     const url = new URL(this.baseUrl + endpoint);
     url.search = new URLSearchParams(query);
     return fetch(url.toString(), { headers: { [this.dev ? "Authorization" : "token"]: this.token } })
-      .then((res, error) => {
-        if (error) throw error;
+      .then((res) => {
         if (res.status !== 200) throw new Error(`API Error ${res.status}: ${res.body}`);
         return res.json();
       });
   }
-
 }
 
 module.exports = IdioticClient;
