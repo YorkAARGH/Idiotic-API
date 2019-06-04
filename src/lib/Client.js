@@ -714,9 +714,9 @@ class IdioticClient {
    * @param {string} text The text you want to alter
    * @returns {string}
    */
-  async owoify(text) {
+  owoify(text) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    return this._get("text/owoify", { text }).then(body => body.json().then((body) => body.text));
+    return this._get("text/owoify", { text }).then(res => res.json().then(body => body.text));
   }
 
   /**
@@ -726,7 +726,7 @@ class IdioticClient {
    */
   mock(text) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    return this._get("text/mock", { text }).then(body => body.json().then((body) => body.text));
+    return this._get("text/mock", { text }).then(res => res.json().then(body => body.text));
   }
 
   /**
@@ -738,7 +738,7 @@ class IdioticClient {
   tiny(text, style) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     if (!tinyStyles.includes(style)) throw new TypeError("Style must be either tiny, superscript or subscript");
-    return this._get("text/tinytext", { text, style }).then(body => body.json().then((body) => body.text));
+    return this._get("text/tinytext", { text, style }).then(res => res.json().then(body => body.text));
   }
 
   /**
@@ -750,7 +750,7 @@ class IdioticClient {
   cursive(text, style) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
     if (!cursiveStyles.includes(style)) throw new TypeError("Style must be either normal or bold");
-    return this._get("text/cursive", { text, style }).then(body => body.json().then((body) => body.text));
+    return this._get("text/cursive", { text, style }).then(res => res.json().then(body => body.text));
   }
 
   /**
@@ -760,7 +760,7 @@ class IdioticClient {
    */
   vapor(text) {
     if (typeof text !== "string") throw new TypeError("Text can only be a string");
-    return this._get("text/vaporwave", { text }).then(body => body.json().then((body) => body.text));
+    return this._get("text/vaporwave", { text }).then(res => res.json().then(body => body.text));
   }
 
   /**
