@@ -700,7 +700,7 @@ class IdioticClient {
   /**
    * Pride endpoint
    * @param {string} avatar Image you expect to be used
-   * @param {pride} string Could be one of the FF. agender, aromantic, asexual, bisexual, genderfluid, genderqueer, intersex, lesbian, lgbtq, nonbinary, pansexual, polysexual, straight, straightally, trans
+   * @param {pride} string Could be one of the FF. agender, aromantic, asexual, bisexual, genderfluid, genderqueer, intersex, lesbian, lgbtq, nonbinary, pansexual, polysexual, straightally, trans
    * @returns {Promise<Buffer>}
    */
   pride(avatar, pride) {
