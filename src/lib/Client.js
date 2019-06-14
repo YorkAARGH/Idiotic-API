@@ -2,6 +2,7 @@ const snekfetch = require("snekfetch");
 const imageUrlRegex = /.webp$/g;
 const cursiveStyles = ["bold", "normal"];
 const tinyStyles = ["tiny", "superscript", "subscript"];
+const prideOptions = ["agender", "aromantic", "asexual", "bisexual", "genderfluid", "genderqueer", "intersex", "lesbian", "lgbtq", "nonbinary", "pansexual", "polysexual", "straightally", "trans"];
 
 /**
  * Client for Idiotic-api Wrapper
@@ -697,7 +698,18 @@ class IdioticClient {
     avatar = avatar.replace(imageUrlRegex, ".png");
     return this._get("overlays/rainbow", { avatar }).then(body => Buffer.from(body));
   }
-
+  /**
+   * Pride endpoint
+   * @param {string} avatar Image you expect to be used
+   * @param {pride} string Could be one of the FF. agender, aromantic, asexual, bisexual, genderfluid, genderqueer, intersex, lesbian, lgbtq, nonbinary, pansexual, polysexual, straightally, trans
+   * @returns {Promise<Buffer>}
+   */
+  pride(avatar, pride) {
+    if (!this.dev) throw new Error("Pride endpoint is disabled while in production");
+    if (!prideOptions.includes(pride)) throw new TypeError(`Pride must be either ${prideOptions.join(", ")}`);
+    avatar = avatar.replace(imageUrlRegex, ".png");
+    return this._get("/overlays/pride", { avatar, pride }).then(body => Buffer.from(body));
+  }
   /**
    * Approved endpoint
    * @param {string} avatar Image you expect to be used
