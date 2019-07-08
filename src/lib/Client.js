@@ -792,14 +792,10 @@ class IdioticClient {
     const timeout = setTimeout(() => controller.abort(), 15000);
     return fetch(url.toString(), { headers: { [this.dev ? "Authorization" : "token"]: this.token } })
       .then((res) => {
-        clearTimeout(timeout);
-        if (res.status !== 200) throw new Error(`IDIOTIC_API_ERROR: Status Code ${res.status}`);
+        if (!res.ok) throw new Error(`IDIOTIC API ERROR: Status Code ${res.status}`);
         return res;
-      }, (error) => {
-        clearTimeout(timeout);
-        if (error.name === "AbortError") error = new Error("IDIOTIC_API_TIMEOUT: Request did not complete in 15s");
-        throw error;
-      });
+      })
+      .finally(() => clearTimeout(timeout));
   }
 }
 
