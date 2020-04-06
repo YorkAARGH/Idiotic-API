@@ -1,3 +1,5 @@
+# THIS API HAS BEEN DISCONTINUED.
+
 # Idiotic API
 
 [![Discord](https://discordapp.com/api/guilds/405783659388469248/widget.png?style=banner1)](https://discord.gg/PgCR8Rg)
